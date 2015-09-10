@@ -1,0 +1,200 @@
+<ion-nav-bar class="bar-assertive">
+
+  <ion-nav-back-button class="button-icon ion-chevron-left" ng-click="appGoBack()"></ion-nav-back-button>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+  </ion-nav-buttons>
+
+  <ion-view title="Sign in" align="center">
+    <ion-content padding="true">
+      <div class="moodboard2">
+        <img src="img/green-1211192-640x640.jpg"></img>
+      </div>
+
+      <form name="testForm" novalidate ng-submit="submit()">
+
+        <div class="list caption overlayText" align="left">
+
+          <label class="item item-input">
+            <span class="input-label">Email Address</span>
+            <input type="text" name="email" ng-model="data.email" ng-required="true" ng-minlength="4" ng-maxlength="10">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label" >Password</span>
+            <input type="password" class="hidden" name="password" ng-model="data.password" ng-required="true" ng-minlength="4" ng-maxlength="10">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Confirm Password</span>
+            <input type="password" class="hidden" name="confirmPassword" ng-model="data.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10">
+          </label>
+
+          <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.  Fields Submitted : {{data.summary}}</span>
+
+
+        </div>
+
+
+      </form>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 16px;
+      background: #fff;
+    }
+    img {
+      width: 100% ;
+      max-width: 100%;
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .content img {
+      width: 100% ;
+      max-width: 100%;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    h1 {
+      letter-spacing: 5px;
+      margin: 2% 0 10% 0;
+      padding: 0;
+      font-size: 2em;
+      font-weight: normal;
+      /*column-span: all;
+      -webkit-column-span: all;
+      -moz-column-spam: all;*/
+    }
+    p {
+      font-size: 1em;
+      line-height: 1.8em;
+      margin: 0;
+    }
+    .title {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .title h1 {
+      letter-spacing: 10px;
+      margin: 15% -10px 2.5% 0;
+      padding: 0;
+      font-size: 4vw;
+      font-weight: normal;
+    }
+    .title h2 {
+      letter-spacing: 2px;
+      padding: 0;
+      margin: 0;
+      font-size: 7vw;
+      font-weight: normal;
+    }
+    .title p {
+      font-size: 2vw;
+      line-height: 1.8em;
+      margin: 0 0 10% 0;
+    }
+    .title_meta p {
+      font-size: 0.8em;
+      line-height: 1.8em;
+    }
+
+    .overlayText {
+        margin: 15% -10px 2.5% 0;
+        width: 80%;
+        text-align: center;
+        opacity: 0.5;
+        top: 0;
+        position: absolute;
+        left: 50px;
+    }
+
+
+    .button-bar {
+        background: none repeat scroll 0 0 #FFFFFF;
+        opacity: 0.8;
+        top:90;
+        left:0;
+        position: absolute;
+    }
+
+    .moodboard2{
+        position:relative;
+
+    }
+    @media (max-width: 800px) {
+      .content, .content_half_left, .content_half_right {
+        width: 90%;
+        background: #fff;
+        padding: 5%;
+        float: left;
+      }
+      .dynamic_2, .dynamic_3  {
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+        -webkit-column-gap: 5em; /* Chrome, Safari, Opera */
+        -moz-column-gap: 5em; /* Firefox */
+        column-gap: 5em;
+        -webkit-column-rule: 1px dotted black; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px dotted black; /* Firefox */
+        column-rule: 1px dotted black;
+    }
+    }
+
+    @media (min-width: 801px) {
+      .container {
+        width: 100%;
+      }
+      .content {
+        width: 90%;
+        background: #fff;
+        padding: 5% 0 5% 5%;
+      }
+      .content_half_left {
+        width: 37.5%;
+        background: #fff;
+        padding: 5% 2.5% 5% 10%;
+        float: left;
+
+      }
+      .content_half_right {
+        width: 37.5%;
+        background: #fff;
+        padding: 5% 10% 5% 2.5%;
+        float: left;
+      }
+     .dynamic_2 {
+        -webkit-column-count: 2; /* Chrome, Safari, Opera */
+        -moz-column-count: 2; /* Firefox */
+        column-count: 2;
+        -webkit-column-gap: 5em; /* Chrome, Safari, Opera */
+        -moz-column-gap: 5em; /* Firefox */
+        column-gap: 5em;
+        -webkit-column-rule: 1px dotted black; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px dotted black; /* Firefox */
+        column-rule: 1px dotted black;
+    }
+      .dynamic_3 {
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+        -webkit-column-gap: 5em; /* Chrome, Safari, Opera */
+        -moz-column-gap: 5em; /* Firefox */
+        column-gap: 5em;
+        -webkit-column-rule: 1px dotted black; /* Chrome, Safari, Opera */
+        -moz-column-rule: 1px dotted black; /* Firefox */
+        column-rule: 1px dotted black;
+    }
+  }
+  </style>
+</ion-content>
+</ion-view>

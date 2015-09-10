@@ -15,7 +15,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
-
+// nexted state app, app.home, app.signUp, app.signIn with assumption that app state gives the upper menu bar
   $stateProvider
     .state('app', {
       url: "/app",
@@ -24,13 +24,36 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers'])
     })
     .state('app.home', {
       url: '/home',
+      cache: 'false',
       views: {
         'appContent' :{
           templateUrl: 'templates/home.html',
           controller : 'HomeController'
         }
       }
+    })
+    .state('app.signUp',{
+      url: '/signUp',
+      cache: 'false',
+      views: {
+        'appSignUp':{
+          templateUrl: 'templates/signUp.html',
+          controller: 'signUpController'
+        }
+      }
+    })
+
+    .state('app.signIn',{
+      url: '/signIn',
+      cache: 'false',
+      views: {
+        'appSignIn':{
+          templateUrl: 'templates/signIn.html',
+          controller: 'signInController'
+        }
+      }
     });
+
 
   $urlRouterProvider.otherwise('app/home');
 })
