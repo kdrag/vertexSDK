@@ -5,39 +5,29 @@
     <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
   </ion-nav-buttons>
 
-  <ion-view title="Sign in" align="center">
+  <ion-view title="User Info" align="center"  ng-controller="userInfoController">
     <ion-content padding="true">
-      <div class="moodboard2">
-        <img src="img/green-1211192-640x640.jpg"></img>
+      <div class="moodboard3">
+        <img src="img/urban-confusion-1453217-640x480.jpg"></img>
       </div>
 
-      <form name="testForm" novalidate ng-submit="submit(login.user)">
+
+
+      <form name="testForm" novalidate ng-click="getUser()">
 
         <div class="list caption overlayText" align="left">
 
-          <label class="item item-input">
-            <span class="input-label">Email Address</span>
-            <input type="text" name="email" ng-model="login.user.email" ng-required="true" ng-minlength="4" ng-maxlength="10">
-          </label>
+          <!-- div class="list" -->
 
-          <label class="item item-input">
-            <span class="input-label" >Password</span>
-            <input type="password" class="hidden" name="password" ng-model="login.user.password" ng-required="true" ng-minlength="4" ng-maxlength="10">
-          </label>
+            <div class="item" ng-repeat="item in data.items">{{item.label}}</div>
+          <!-- /div -->
 
-          <label class="item item-input">
-            <span class="input-label">Confirm Password</span>
-            <input type="password" class="hidden" name="confirmPassword" ng-model="login.user.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10">
-          </label>
-
-          <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.  Fields Submitted : {{data.summary}}</span>
+          <button class="button button-balanced" align="left">Get User Info</button>
 
 
         </div>
 
-
       </form>
-
 
   <style>
     body {
@@ -127,7 +117,7 @@
         position: absolute;
     }
 
-    .moodboard2{
+    .moodboard3{
         position:relative;
 
     }

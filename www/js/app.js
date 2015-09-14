@@ -1,4 +1,4 @@
-angular.module('vertexSDK', ['ionic','vertexSDK.controllers'])
+angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.services', 'angular-storage', 'ui.router'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -13,8 +13,17 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers'])
   });
 })
 
+/***********************************************/
 
-.config(function($stateProvider, $urlRouterProvider) {
+
+
+/***********************************************/
+
+
+
+
+
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 // nexted state app, app.home, app.signUp, app.signIn with assumption that app state gives the upper menu bar
   $stateProvider
     .state('app', {
@@ -42,18 +51,42 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers'])
         }
       }
     })
-
     .state('app.signIn',{
       url: '/signIn',
       cache: 'false',
       views: {
         'appSignIn':{
           templateUrl: 'templates/signIn.html',
-          controller: 'signInController'
+          controller: 'signInController',
+          controllerAs: 'login'
         }
       }
-    });
+    })
+    .state('app.userInfo',{
+      url: '/userInfo',
+      cache: 'false',
+      views: {
+        'appUserInfo':{
+          templateUrl: 'templates/userInfo.html',
+          controller: 'userInfoController',
+          controllerAs: 'userInfo'
+        }
+      }
+    })
+
+    .state('dashboard', {
+      url: '/dashboard',
+      views:{
+        'appDashboard':{
+          templateUrl: 'app/templates/dashboard.tmpl.html',
+          controller: 'DashboardCtrl',
+          controllerAs: 'dashboard'
+        }
+      }
+    })
+
 
 
   $urlRouterProvider.otherwise('app/home');
-})
+  $httpProvider.interceptors.push('APIInterceptor');
+});

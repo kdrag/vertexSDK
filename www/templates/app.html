@@ -13,16 +13,34 @@
       <ion-nav-view name="appContent"></ion-nav-view>
       <ion-nav-view name="appSignUp"></ion-nav-view>
       <ion-nav-view name="appSignIn"></ion-nav-view>
+      <ion-nav-view name="appUserInfo"></ion-nav-view>
     </ion-side-menu-content>
 
 
 
     <ion-side-menu side="left">
       <ion-header-bar class="bar-assertive">
-                <h1 class="title">Functional Menu</h1>
+        <h1 class="title">Menu</h1>
       </ion-header-bar>
       <ion-content>
-                <ion-cart ng-controller='SideMenuController'></ion-cart>
+        <!-- ion-cart ng-controller='SideMenuController'></ion-cart -->
+        <ion-list>
+          <ion-item menu-close href="#/app/home">
+            Home
+          </ion-item>
+          <ion-item menu-close href="#/app/signUp">
+            Sign Up
+          </ion-item>
+          <ion-item menu-close href="#/app/signIn">
+            Sign In
+          </ion-item>
+          <ion-item menu-close href="#/app/userInfo">
+            User Info
+          </ion-item>
+          <ion-item menu-close href="#/app/settings">
+            Settings
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ion-side-menu>
 
