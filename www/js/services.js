@@ -1,13 +1,12 @@
-// constat value for ENDPOINT_URI needs to be made dynamic
-
-
-angular.module('vertexSDK.services',['angular-storage'])
+angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //.constant('ENDPOINT_URI', 'http://vtx00.wgn.jp/')
-.constant('ENDPOINT_URI', 'http://localhost:9000/')
-.constant('test_code64','YWRtaW46YWRtaW4=' )
-.service('UserService', function(store) {
+//.constant('ENDPOINT_URI', 'http://localhost:9000/')
+.constant('ENDPOINT_URI', 'http://192.168.1.128:9000/')
 
+.constant('TESTAUTH','YWRtaW46YWRtaW4=')
 
+/*
+.factory('UserService', function(store) {
 	// use these services to set the client to the signed-In user
     var service = this,
         currentUser = null;
@@ -26,7 +25,7 @@ angular.module('vertexSDK.services',['angular-storage'])
     };
 })
 
-.service('APIInterceptor', function($rootScope, UserService) {
+.factory('APIInterceptor', function($rootScope, UserService) {
     var service = this;
 
     service.request = function(config) {
@@ -46,30 +45,32 @@ angular.module('vertexSDK.services',['angular-storage'])
         return response;
 		};
 })
+*/
+.factory('GetUserService', function($http, ENDPOINT_URI, TESTAUTH) {
+       console.log('at GetUserService');
+       var service = this,
+					 path = 'event';
 
-.service('GetUserService', function($http, ENDPOINT_URI) {
-			 var service = this,
-					 path = 'user';
-
-			 function getUrl() {
+			 service.getUrl = function() {
 					 return ENDPOINT_URI + path;
 			 }
 
+       service.constantValue="check";
+
 			 service.getUser = function() {
 					 //return $http.get(getUrl()); // no parameters
-//					 return $http.get(getUrl(), {
-//    		 			headers: {'Authorization': 'Basic YWRtaW46YWRtaW4=', 'Content-Type': 'application/json'}
-//						});
-							console.log('http get ');
-							console.log($http.get({method: 'GET', url: getUrl(),
-	      		 		 headers: {'Authorization': 'Basic YWRtaW46YWRtaW4=', 'Content-Type': 'application/json'}
-	  					 }));
-					 return $http.get({method: 'GET', url: getUrl(),
-     		 		 headers: {'Authorization': 'Basic YWRtaW46YWRtaW4=', 'Content-Type': 'application/json'}
- 					 });
+          alert('at getUser');
+          $http.defaults.headers.common.Authorization = "Basic " + TESTAUTH;
+					return $http.get(getUrl());
+		};
+})
 
-			 };
-	 })
+.factory('Event', function ($resource, $http){
+  return $resource('http://jsonplaceholder.typicode.com/posts/1');
+  //$http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
+  //return $resource('http://vtx00.wgn.jp/event/Test00');
+
+})
 
 /*
 .service('LoginService', function($http, ENDPOINT_URI) {

@@ -1,4 +1,4 @@
-angular.module('vertexSDK.controllers', [])
+angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 
 .controller('AppCtrl', function() {
@@ -46,7 +46,7 @@ angular.module('vertexSDK.controllers', [])
     }
 }])
 
-.controller("signInController", function($scope, $rootScope, $http, $state, GetUserService, UserService) {
+.controller("signInController", function($scope, $http, $state) {
 //.controller("signInController", function($scope, $rootScope, $http, $state, LoginService, SignInService, UserService) {
 
 //  APIInterceptor code related addition; test getUser, specifically NOT a sign in function but just an API get...purely for TEST purpose here
@@ -110,18 +110,31 @@ angular.module('vertexSDK.controllers', [])
 */
 })
 
-.controller("userInfoController", ['$scope','$rootScope', '$http', '$state', function($scope, $rootScope, $http, $state, GetUserService, UserService) {
-  console.log("at userInfoController");
+//.controller("userInfoController", ['$scope', '$http',function($scope, $http) {
 
-var local=this;
 
+
+.controller('userInfoController', function ($scope, Event){
+    $scope.event = Event.get();
+    console.log($scope.event.title)
+})
+
+
+.controller("userInfoControllerOld", ['$scope', '$http',function($scope, $http) {
+
+
+//alert("at userInfoController");
+
+//var local=this;
+//var response;
 
 // create empty JSON object "data" as empty array
 
-  $scope.data = {
-    items : []
-  };
+//  $scope.data = {
+//    items : []
+//  };
 // fill the data[] object array with information; this is referenced in userInfo.html as data.items, with each value in the data[] referred to individually by item.label
+
 
  $scope.getUser=function(){
 //   GetUserService.getUser()
@@ -129,13 +142,25 @@ var local=this;
       for (var i=0; i < 3; i++){
           $scope.data.items.pop()
       };
+      alert("About to call GET");
 
+      //$http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
+      //       "proxyUrl": "jsonplaceholder.typicode.com/posts/1"
+
+      //$http.get({url:'http://jsonplaceholder.typicode.com/posts/1', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
+      $http.get({url:'http://vtx00.wgn.jp/event', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
+
+
+/*
       GetUserService.getUser().then(function(response){
+        alert('response: '+ response);
         local.userName=response.userName;
         local.givenName=response.givenName;
         local.surname=response.surname;
 
       });
+*/
+
       $scope.data.items.push(
         {
           id : 1,
@@ -150,8 +175,6 @@ var local=this;
           label : "surname: " + local.surname
         }
       )
-//    }
-//  );
  };
 
 

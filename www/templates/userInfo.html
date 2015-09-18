@@ -7,29 +7,34 @@
 
   <ion-view title="User Info" align="center"  ng-controller="userInfoController">
     <ion-content padding="true">
-      <div class="moodboard3">
+      <!--div class="moodboard3">
         <img src="img/urban-confusion-1453217-640x480.jpg"></img>
+      </div-->
+      <div class="list card">
+        <div class="item">
+          {{event.userId}}
+          {{event.title}}
+        </div>
       </div>
 
-
-
+<!--
       <form name="testForm" novalidate ng-click="getUser()">
 
         <div class="list caption overlayText" align="left">
 
-          <!-- div class="list" -->
 
             <div class="item" ng-repeat="item in data.items">{{item.label}}</div>
-          <!-- /div -->
 
-          <button class="button button-balanced" align="left">Get User Info</button>
+          <button class="button button-balanced" align="left" ng-controller='userInfoController'>Get User Info</button>
 
 
         </div>
 
       </form>
 
-  <style>
+-->
+
+  <!-- style>
     body {
       margin: 0;
       padding: 0;
@@ -186,6 +191,6 @@
         column-rule: 1px dotted black;
     }
   }
-  </style>
+</style -->
 </ion-content>
 </ion-view>

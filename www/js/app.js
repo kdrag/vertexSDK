@@ -1,4 +1,4 @@
-angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.services', 'angular-storage', 'ui.router'])
+angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.services', 'angular-storage', 'ui.router', 'ngResource'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -88,5 +88,5 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
 
 
   $urlRouterProvider.otherwise('app/home');
-  $httpProvider.interceptors.push('APIInterceptor');
+  //$httpProvider.interceptors.push('APIInterceptor');
 });
