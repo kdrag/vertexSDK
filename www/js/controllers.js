@@ -144,11 +144,11 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       };
       alert("About to call GET");
 
-      //$http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
+      $http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
       //       "proxyUrl": "jsonplaceholder.typicode.com/posts/1"
 
       //$http.get({url:'http://jsonplaceholder.typicode.com/posts/1', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
-      $http.get({url:'http://vtx00.wgn.jp/event', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
+      $http.get({url:'http://localhost:8100/event', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
 
 
 /*

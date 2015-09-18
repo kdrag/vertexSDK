@@ -1,7 +1,7 @@
 angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //.constant('ENDPOINT_URI', 'http://vtx00.wgn.jp/')
 //.constant('ENDPOINT_URI', 'http://localhost:9000/')
-.constant('ENDPOINT_URI', 'http://192.168.1.128:9000/')
+.constant('ENDPOINT_URI', 'http://localhost:8100/event')
 
 .constant('TESTAUTH','YWRtaW46YWRtaW4=')
 
@@ -66,9 +66,11 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 })
 
 .factory('Event', function ($resource, $http){
-  return $resource('http://jsonplaceholder.typicode.com/posts/1');
-  //$http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
-  //return $resource('http://vtx00.wgn.jp/event/Test00');
+  //return $resource('http://jsonplaceholder.typicode.com/posts/1');
+  $http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
+  //return $resource('http://localhost:8100/event/Test00');
+  return $resource('http://vtx00.wgn.jp/event/Test00');
+
 
 })
 

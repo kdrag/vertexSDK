@@ -5,15 +5,48 @@
     <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
   </ion-nav-buttons>
 
-  <ion-view title="User Info" align="center"  ng-controller="userInfoController">
+  <ion-view title="Event Info" align="center">
     <ion-content padding="true">
       <!--div class="moodboard3">
         <img src="img/urban-confusion-1453217-640x480.jpg"></img>
       </div-->
       <div class="list card">
-        <div class="item">
-          {{event.userId}}
-          {{event.title}}
+        <div class="item" align="left">
+          id: {{event.id}}<br>
+          eventId: {{event.eventId}}<br>
+          dtStart: {{event.dtStart}}<br>
+          marketContext: {{event.marketContext}}<br>
+          duration: {{event.duration}}<br>
+          signals: [ <br>
+          <blockquote>type: {{event.signals[0].type}}<br>
+                      interval: [  <br>
+                      <blockquote>duration: {{event.signals[0].intervals[0].duration}}<br>
+                                  value: {{event.signals[0].intervals[0].value}}<br>
+                      ]</blockquote>
+                      id: {{event.signals[0].id}}<br>
+                      name: {{event.signals[0].name}}<br>
+                      curValue: {{event.signals[0].curValue}}<br>
+          </blockquote>
+          ]<br>
+          cancelled: {{event.cancelled}}<br>
+          testEvent: {{event.testEvent}}<br>
+          responseRequired: {{event.responseRequired}}<br>
+          target: [<br>
+          <blockquote>resourceIDs: {{event.target[0].resourceIDs}}<br>
+                      venIDs: {{event.target[0].eventIDs}}<br>
+          </blockquote>
+          ]<br>
+          participationStatusTs: {{event.participationStatusTs}}<br>
+          modNumber: {{event.modNumber}}<br>
+          vertex ID: {{event.vertex}}<br>
+          endTs: {{event.endTs}}<br>
+          startTs: {{event.startTs}}<br>
+          drProgram: {{event.drProgram}}<br>
+          rampUpStartTs: {{event.rampUpStartTs}}<br>
+          recoveryEndTs: {{event.recoveryEndTs}}<br>
+          accountParticipationKw: {{event.accountParticipationKw}}<br>
+          participationStatus: {{event.participationStatus}}<br>
+          createdTs: {{event.createdTs}}
         </div>
       </div>
 
