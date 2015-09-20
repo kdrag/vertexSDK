@@ -46,8 +46,14 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     }
 }])
 
-.controller("signInController", function($scope, $http, $state) {
+.controller("signInController", function($scope, $http, $state, $localstorage) {
 //.controller("signInController", function($scope, $rootScope, $http, $state, LoginService, SignInService, UserService) {
+
+  $localstorage.set('loggedInState', 'hello');
+  console.log($localstorage.get('loggedInState'));
+
+
+
 
 //  APIInterceptor code related addition; test getUser, specifically NOT a sign in function but just an API get...purely for TEST purpose here
 /*
@@ -120,7 +126,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 })
 
 
-.controller("userInfoControllerOld", ['$scope', '$http',function($scope, $http) {
+.controller("userInfoControllerOld", ['$scope', '$http','$localstorage', function($scope, $http, $localstorage) {
 
 
 //alert("at userInfoController");
@@ -144,11 +150,13 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       };
       alert("About to call GET");
 
-      $http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
+      $http.defaults.headers.common.Authorization = 'Basic ' + 'VGVzdE9wZXJhdG9yOnRlc3RvcGVyYXRvcg==';
       //       "proxyUrl": "jsonplaceholder.typicode.com/posts/1"
 
       //$http.get({url:'http://jsonplaceholder.typicode.com/posts/1', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
       $http.get({url:'http://localhost:8100/event', headers: { 'Content-Type': 'application/json; charset=UTF-8'}}).then.alert("done");
+
+      console.log('getting localstorage ' + $localstorage.get('loggedInState'));
 
 
 /*
@@ -261,14 +269,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 }])
 
  */
-/*
-.directive("ionCart", function() {
-  return {
-    restrict : "E",
-    templateUrl : "templates/ionCart.html"
-  }
-})
-*/
+
 .directive("ionHome", function() {
   return {
     restrict : "E",

@@ -29,7 +29,18 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     .state('app', {
       url: "/app",
       abstract: true,
-      templateUrl: 'templates/app.html'
+      templateUrl: 'templates/app.html',
+      data:{
+        requireLogin: false
+      }
+    })
+    .state('app.loggedIn',{
+      url: "/loggedIn",
+      abstract: true,
+      templateUrl: 'templates/loggedIn.html',
+      data:{
+        requiredLogin: true
+      }
     })
     .state('app.home', {
       url: '/home',
@@ -65,8 +76,11 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     .state('app.userInfo',{
       url: '/userInfo',
       cache: 'false',
+      data:{
+        requiredLogin: true
+      },
       views: {
-        'appUserInfo':{
+        'UserInfo':{
           templateUrl: 'templates/userInfo.html',
           controller: 'userInfoController',
           controllerAs: 'userInfo'
@@ -74,13 +88,13 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
-    .state('dashboard', {
-      url: '/dashboard',
+    .state('app.settings', {
+      url: '/settings',
       views:{
-        'appDashboard':{
-          templateUrl: 'app/templates/dashboard.tmpl.html',
-          controller: 'DashboardCtrl',
-          controllerAs: 'dashboard'
+        'Settings':{
+          templateUrl: 'app/templates/settings.html',
+          controller: 'SettingsCtrl',
+          controllerAs: 'settings'
         }
       }
     })

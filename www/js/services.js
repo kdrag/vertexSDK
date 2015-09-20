@@ -65,11 +65,13 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 		};
 })
 
-.factory('Event', function ($resource, $http){
+.factory('Event', function ($resource, $http, $localstorage){
   //return $resource('http://jsonplaceholder.typicode.com/posts/1');
-  $http.defaults.headers.common.Authorization = 'Basic ' + 'YWRtaW46YWRtaW4=';
-  //return $resource('http://localhost:8100/event/Test00');
-  return $resource('http://vtx00.wgn.jp/event/Test00');
+  alert('getting localstorage ' + $localstorage.get('loggedInState'));
+
+  $http.defaults.headers.common.Authorization = 'Basic ' + 'VGVzdE9wZXJhdG9yOnRlc3RvcGVyYXRvcg==';
+  return $resource('http://localhost:8100/event/Test00');
+  //return $resource('http://vtx00.wgn.jp/event/Test00');
 
 
 })
@@ -101,5 +103,22 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 	 })
 
 	 */
+
+   .factory('$localstorage', ['$window', function($window) {
+     return {
+       set: function(key, value) {
+         $window.localStorage[key] = value;
+       },
+       get: function(key, defaultValue) {
+         return $window.localStorage[key] || defaultValue;
+       },
+       setObject: function(key, value) {
+         $window.localStorage[key] = JSON.stringify(value);
+       },
+       getObject: function(key) {
+         return JSON.parse($window.localStorage[key] || '{}');
+       }
+     }
+   }]);
 
 	 ;
