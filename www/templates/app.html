@@ -16,7 +16,7 @@
 
 
 
-    <ion-side-menu side="left" ng-controller="AppSideMenuController" ng-model='checkValue'>
+    <ion-side-menu side="left" ng-controller="AppSideMenuController" ng-model='checkValue' >
       <ion-header-bar class="bar-assertive">
         <h1 class="title">Menu</h1>
       </ion-header-bar>
@@ -40,7 +40,7 @@
           <ion-item menu-close href="#/app/settings">
             Settings
           </ion-item>
-          <ion-item menu-close href=''>
+          <ion-item menu-close href='' cache-view="false" ng-controller="refresh_control">
             Logged In: {{checkValue}}
           </ion-item>
         </ion-list>

@@ -1,6 +1,6 @@
 angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.services', 'angular-storage', 'ui.router', 'ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $localstorage) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -10,6 +10,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $localstorage.set('loggedInState', false);
   });
 })
 

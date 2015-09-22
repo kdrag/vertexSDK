@@ -25,15 +25,22 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('AppSideMenuController', ['$rootScope','$scope', '$state','$ionicHistory', '$ionicSideMenuDelegate', '$localstorage', function($rootScope, $scope, $state, $ionicHistory, $ionicSideMenuDelegate, $localstorage) {
 
-  $scope.checkValue=$rootScope.showIfLoggedIn;
+
+  $scope.checkValue=$localstorage.get('loggedInState');
   alert($scope.checkValue);
-  alert('Menu: $rootScope.showIfLoggedIn ' + $rootScope.showIfLoggedIn);
   alert('get $localstorage loggedInState ' + $localstorage.get('loggedInState'));
 
   //$scope.checkValue="test";
 
 }])
 
+
+.controller('refresh_control',function($scope,$interval, $localstorage){
+
+  $interval(function(){
+    $scope.checkValue=$localstorage.get('loggedInState');
+    },1000);
+})
 
 
 .controller("HomeController", ['$scope', '$window', '$location', '$state', function($scope, $window, $location){
@@ -42,9 +49,11 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
-.controller("signUpController", ['$scope', '$state', '$ionicHistory',function($state, $scope, $ionicHistory) {
+.controller("signUpController", ['$rootScope', '$scope', '$state', '$ionicHistory', '$localstorage',function($rootScope, $scope, $state, $ionicHistory, $localstorage) {
   //alert("Sign up View");
   alert("at signUpController, hence appSignUp view");
+  alert('get on localstorage: ' + $localstorage.get('loggedInState'));
+/*
   $scope.data = {
       "firstname" : "",
       "lastname" : "",
@@ -59,6 +68,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       $scope.data.submissions++;
       $scope.data.summary = angular.copy($scope.data.firstname) + " " + angular.copy($scope.data.lastname);
     }
+*/
+
 }])
 
 .controller("signInController", function($rootScope, $scope, $http, $state, $localstorage) {
@@ -77,6 +88,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     //this.data = null;
     //alert('at submit function');
     $scope.data.submissions++;
+    alert('get on localstorage: ' + $localstorage.get('loggedInState'));
     $localstorage.set('loggedInState', true);
     $scope.data.stateValue=$localstorage.get('loggedInState');
     //alert('submitted; log in state is: ' + $scope.data.stateValue);
