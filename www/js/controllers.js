@@ -9,7 +9,9 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 })
 
 
-.controller('AppController', ['$scope', '$state','$ionicHistory', '$ionicSideMenuDelegate', function($scope, $state, $ionicHistory, $ionicSideMenuDelegate) {
+.controller('AppController', ['$rootScope','$scope', '$state','$ionicHistory', '$ionicSideMenuDelegate', '$localstorage', function($rootScope, $scope, $state, $ionicHistory, $ionicSideMenuDelegate, $localstorage) {
+  //$rootScope.showIfLoggedIn = $localstorage.set('loggedInState', false);
+
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
     console.log("at AppController");
@@ -18,7 +20,20 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     $ionicHistory.goBack();
 
   }
+
 }])
+
+.controller('AppSideMenuController', ['$rootScope','$scope', '$state','$ionicHistory', '$ionicSideMenuDelegate', '$localstorage', function($rootScope, $scope, $state, $ionicHistory, $ionicSideMenuDelegate, $localstorage) {
+
+  $scope.checkValue=$rootScope.showIfLoggedIn;
+  alert($scope.checkValue);
+  alert('Menu: $rootScope.showIfLoggedIn ' + $rootScope.showIfLoggedIn);
+  alert('get $localstorage loggedInState ' + $localstorage.get('loggedInState'));
+
+  //$scope.checkValue="test";
+
+}])
+
 
 
 .controller("HomeController", ['$scope', '$window', '$location', '$state', function($scope, $window, $location){
@@ -29,7 +44,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller("signUpController", ['$scope', '$state', '$ionicHistory',function($state, $scope, $ionicHistory) {
   //alert("Sign up View");
-  console.log("at signUpController, hence appSignUp view");
+  alert("at signUpController, hence appSignUp view");
   $scope.data = {
       "firstname" : "",
       "lastname" : "",
@@ -40,18 +55,35 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       "summary" : ""
     };
 
-    $scope.submit = function() {
+    $scope.submit = function(data) {
       $scope.data.submissions++;
       $scope.data.summary = angular.copy($scope.data.firstname) + " " + angular.copy($scope.data.lastname);
     }
 }])
 
-.controller("signInController", function($scope, $http, $state, $localstorage) {
+.controller("signInController", function($rootScope, $scope, $http, $state, $localstorage) {
 //.controller("signInController", function($scope, $rootScope, $http, $state, LoginService, SignInService, UserService) {
+  $scope.data=[];
+  $scope.data = {
+    "email" : null,
+    "password" : null,
+    "confirmPassword" : null,
+    "submissions" : 0,
+    "stateValue" : null
+  };
 
-  $localstorage.set('loggedInState', 'hello');
-  console.log($localstorage.get('loggedInState'));
-
+  $scope.signInSubmit = function(q) {
+    //$scope.array.unshift(q);
+    //this.data = null;
+    //alert('at submit function');
+    $scope.data.submissions++;
+    $localstorage.set('loggedInState', true);
+    $scope.data.stateValue=$localstorage.get('loggedInState');
+    //alert('submitted; log in state is: ' + $scope.data.stateValue);
+    //alert('submitted email: ' + $scope.data.email);
+    $rootScope.showIfLoggedIn = $localstorage.get('loggedInState');   //$state.go('app.loggedIn');
+    alert('$rootScope.showIfLoggedIn ' + $rootScope.showIfLoggedIn);
+  }
 
 
 
@@ -286,6 +318,18 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   }
 })
 
+.directive('ngIf', function() {
+    return {
+        link: function(scope, element, attrs) {
+            if(scope.$eval(attrs.ngIf)) {
+                // remove '<div ng-if...></div>'
+                element.replaceWith(element.children())
+            } else {
+                element.replaceWith(' ')
+            }
+        }
+    }
+})
 
 .directive("ionSignIn", function() {
   return {

@@ -10,17 +10,13 @@
         </ion-nav-buttons>
 
       </ion-nav-bar>
-      <ion-nav-view name="appContent"></ion-nav-view>
-      <ion-nav-view name="appSignUp"></ion-nav-view>
-      <ion-nav-view name="appSignIn"></ion-nav-view>
-      <ion-nav-view name="UserInfo"></ion-nav-view>
-      <!-- the view below is not visible unless user has logged on to the client application-->
-      <ion-nav-view name="Settings"></ion-nav-view>
+        <!-- view is required -->
+        <ion-nav-view></ion-nav-view>
     </ion-side-menu-content>
 
 
 
-    <ion-side-menu side="left">
+    <ion-side-menu side="left" ng-controller="AppSideMenuController" ng-model='checkValue'>
       <ion-header-bar class="bar-assertive">
         <h1 class="title">Menu</h1>
       </ion-header-bar>
@@ -30,17 +26,22 @@
           <ion-item menu-close href="#/app/home">
             Home
           </ion-item>
-          <ion-item menu-close href="#/app/signUp">
+          <ion-item menu-close href="#/app/loggedOut/signUp">
             Sign Up
           </ion-item>
-          <ion-item menu-close href="#/app/signIn">
+          <ion-item menu-close href="#/app/loggedOut/signIn">
             Sign In
           </ion-item>
-          <ion-item menu-close href="#/app/userInfo" >
-            User Info
-          </ion-item>
+          <div show-when-state="app.loggedIn">
+            <ion-item menu-close href="#/app/loggedIn/userInfo">
+             User Info
+            </ion-item>
+          </div>
           <ion-item menu-close href="#/app/settings">
             Settings
+          </ion-item>
+          <ion-item menu-close href=''>
+            Logged In: {{checkValue}}
           </ion-item>
         </ion-list>
       </ion-content>

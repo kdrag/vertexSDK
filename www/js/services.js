@@ -67,7 +67,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
 .factory('Event', function ($resource, $http, $localstorage){
   //return $resource('http://jsonplaceholder.typicode.com/posts/1');
-  alert('getting localstorage ' + $localstorage.get('loggedInState'));
+  //alert('getting localstorage ' + $localstorage.get('loggedInState'));
 
   $http.defaults.headers.common.Authorization = 'Basic ' + 'VGVzdE9wZXJhdG9yOnRlc3RvcGVyYXRvcg==';
   return $resource('http://localhost:8100/event/Test00');

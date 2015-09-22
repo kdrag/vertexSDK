@@ -42,7 +42,15 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         requiredLogin: true
       }
     })
-    .state('app.home', {
+    .state('app.loggedOut',{
+      url: "/loggedOut",
+      abstract: true,
+      templateUrl: 'templates/loggedOut.html',
+      data:{
+        requiredLogin: false
+      }
+    })
+    .state('app.loggedOut.home', {
       url: '/home',
       cache: 'false',
       views: {
@@ -52,7 +60,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
-    .state('app.signUp',{
+    .state('app.loggedOut.signUp',{
       url: '/signUp',
       cache: 'false',
       views: {
@@ -62,7 +70,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
-    .state('app.signIn',{
+    .state('app.loggedOut.signIn',{
       url: '/signIn',
       cache: 'false',
       views: {
@@ -73,7 +81,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
-    .state('app.userInfo',{
+    .state('app.loggedIn.userInfo',{
       url: '/userInfo',
       cache: 'false',
       data:{
@@ -92,7 +100,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       url: '/settings',
       views:{
         'Settings':{
-          templateUrl: 'app/templates/settings.html',
+          templateUrl: 'templates/settings.html',
           controller: 'SettingsCtrl',
           controllerAs: 'settings'
         }
@@ -101,6 +109,6 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
 
 
 
-  $urlRouterProvider.otherwise('app/home');
+  $urlRouterProvider.otherwise('app/loggedOut/home');
   //$httpProvider.interceptors.push('APIInterceptor');
 });

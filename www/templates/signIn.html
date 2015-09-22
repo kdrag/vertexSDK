@@ -11,26 +11,28 @@
         <img src="img/green-1211192-640x640.jpg"></img>
       </div>
 
-      <form name="testForm" novalidate ng-submit="submit(login.user)">
+      <form name="signInForm" novalidate ng-submit="signInSubmit(data)" ng-controller=signInController>
 
         <div class="list caption overlayText" align="left">
 
-          <label class="item item-input">
+          <label class="item item-input" align="left">
             <span class="input-label">Email Address</span>
-            <input type="text" name="email" ng-model="login.user.email" ng-required="true" ng-minlength="4" ng-maxlength="10">
+            <input type="email" name="email" novalidate placeholder="xxyy@zz.com" ng-model="data.email" ng-required="true" ng-minlength="4" ng-maxlength="30">
           </label>
 
-          <label class="item item-input">
+          <label class="item item-input" align="left">
             <span class="input-label" >Password</span>
-            <input type="password" class="hidden" name="password" ng-model="login.user.password" ng-required="true" ng-minlength="4" ng-maxlength="10">
+            <input type="password" class="hidden" name="password" ng-model="data.password" ng-required="true" ng-minlength="4" ng-maxlength="10">
           </label>
 
-          <label class="item item-input">
+          <label class="item item-input" align="left">
             <span class="input-label">Confirm Password</span>
-            <input type="password" class="hidden" name="confirmPassword" ng-model="login.user.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10">
+            <input type="password" class="hidden" name="confirmPassword" ng-model="data.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10">
           </label>
 
-          <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.  Fields Submitted : {{data.summary}}</span>
+          <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.</span>
+          <span> user: {{data.email}}</span>
+          <span> logged in: {{data.stateValue}}</span>
 
 
         </div>
