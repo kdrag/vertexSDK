@@ -4,6 +4,7 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
   </ion-nav-buttons>
+</ion-nav-bar>
 
   <ion-view title="Event Info" align="center">
     <ion-content padding="true">
@@ -12,40 +13,40 @@
       </div-->
       <div class="list card">
         <div class="item" align="left">
-          id: {{event.id}}<br>
-          eventId: {{event.eventId}}<br>
-          dtStart: {{event.dtStart}}<br>
-          marketContext: {{event.marketContext}}<br>
-          duration: {{event.duration}}<br>
-          signals: [ <br>
-          <blockquote>type: {{event.signals[0].type}}<br>
-                      interval: [  <br>
-                      <blockquote>duration: {{event.signals[0].intervals[0].duration}}<br>
-                                  value: {{event.signals[0].intervals[0].value}}<br>
-                      ]</blockquote>
-                      id: {{event.signals[0].id}}<br>
-                      name: {{event.signals[0].name}}<br>
-                      curValue: {{event.signals[0].curValue}}<br>
-          </blockquote>
-          ]<br>
-          cancelled: {{event.cancelled}}<br>
-          testEvent: {{event.testEvent}}<br>
-          responseRequired: {{event.responseRequired}}<br>
-          target: [<br>
-          <blockquote>resourceIDs: {{event.target[0].resourceIDs}}<br>
-                      venIDs: {{event.target[0].eventIDs}}<br>
-          </blockquote>
-          ]<br>
-          participationStatusTs: {{event.participationStatusTs}}<br>
-          modNumber: {{event.modNumber}}<br>
-          vertex ID: {{event.vertex}}<br>
-          endTs: {{event.endTs}}<br>
-          startTs: {{event.startTs}}<br>
-          drProgram: {{event.drProgram}}<br>
-          rampUpStartTs: {{event.rampUpStartTs}}<br>
-          recoveryEndTs: {{event.recoveryEndTs}}<br>
-          accountParticipationKw: {{event.accountParticipationKw}}<br>
-          participationStatus: {{event.participationStatus}}<br>
+          id: {{event.id}}<br></br>
+          eventId: {{event.eventId}}<br></br>
+          dtStart: {{event.dtStart}}<br></br>
+          marketContext: {{event.marketContext}}<br></br>
+          duration: {{event.duration}}<br></br>
+          signals: [ <br></br>
+          <blockquote>type: {{event.signals[0].type}}<br></br>
+                      interval: [  <br></br>
+                      <blockquote>duration: {{event.signals[0].intervals[0].duration}}<br></br>
+                                  value: {{event.signals[0].intervals[0].value}}<br></br>
+                      ]</blockquote><br></br>
+                      id: {{event.signals[0].id}}<br></br>
+                      name: {{event.signals[0].name}}<br></br>
+                      curValue: {{event.signals[0].curValue}}<br></br>
+          </blockquote><br></br>
+          ]<br></br>
+          cancelled: {{event.cancelled}}<br></br>
+          testEvent: {{event.testEvent}}<br></br>
+          responseRequired: {{event.responseRequired}}<br></br>
+          target: [<br></br>
+          <blockquote>resourceIDs: {{event.target[0].resourceIDs}}<br></br>
+                      venIDs: {{event.target[0].eventIDs}}<br></br>
+          </blockquote><br></br>
+          ]<br></br>
+          participationStatusTs: {{event.participationStatusTs}}<br></br>
+          modNumber: {{event.modNumber}}<br></br>
+          vertex ID: {{event.vertex}}<br></br>
+          endTs: {{event.endTs}}<br></br>
+          startTs: {{event.startTs}}<br></br>
+          drProgram: {{event.drProgram}}<br></br>
+          rampUpStartTs: {{event.rampUpStartTs}}<br></br>
+          recoveryEndTs: {{event.recoveryEndTs}}<br></br>
+          accountParticipationKw: {{event.accountParticipationKw}}<br></br>
+          participationStatus: {{event.participationStatus}}<br></br>
           createdTs: {{event.createdTs}}
         </div>
       </div>

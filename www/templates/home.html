@@ -1,5 +1,12 @@
-  <ion-view title="VertexSDK Client Application" align="center">
+<ion-nav-bar class="bar-assertive">
 
+  <ion-nav-back-button class="button-icon ion-chevron-left" ng-click="appGoBack()"></ion-nav-back-button>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+  <ion-view title="VertexSDK Client Application" align="center">
 
     <ion-content padding="true">
       <!-- ion-Home -->
@@ -20,7 +27,7 @@
       </div>
 
       <div class="caption button-bar">
-             <button class="button" ui-sref="app.loggedOut.signUp">Sign Up</button>
+             <button class="button" ui-sref="app.loggedOut.signOff" ng-controller='signOffController'>Sign Off</button>
             <button class="button" ui-sref="app.loggedOut.signIn">Sign In</button>
       </div>
       <style>

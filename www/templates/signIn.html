@@ -4,6 +4,7 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
   </ion-nav-buttons>
+</ion-nav-bar>
 
   <ion-view title="Sign in" align="center">
     <ion-content padding="true">
@@ -11,23 +12,29 @@
         <img src="img/green-1211192-640x640.jpg"></img>
       </div>
 
-      <form name="signInForm" novalidate ng-submit="signInSubmit(data)" ng-controller=signInController>
+      <form name="signInForm" ng-submit="signInSubmit(data)" ng-controller='signInController'>
 
         <div class="list caption overlayText" align="left">
 
           <label class="item item-input" align="left">
             <span class="input-label">Email Address</span>
-            <input type="email" name="email" novalidate placeholder="xxyy@zz.com" ng-model="data.email" ng-required="true" ng-minlength="4" ng-maxlength="30">
+            <input type="email" name="email" placeholder="xxyy@zz.com" ng-model="data.email" ng-required="true" ng-minlength="4" ng-maxlength="30"></input>
           </label>
 
           <label class="item item-input" align="left">
+            <span class="input-label">User Name</span>
+            <input type="text" name="userName" placeholder="username" ng-model="data.userName" ng-required="true" ng-minlength="4" ng-maxlength="30"></input>
+          </label>
+
+
+          <label class="item item-input" align="left">
             <span class="input-label" >Password</span>
-            <input type="password" class="hidden" name="password" ng-model="data.password" ng-required="true" ng-minlength="4" ng-maxlength="10">
+            <input type="password" class="hidden" name="password" placeholder="********" ng-model="data.password" ng-required="true" ng-minlength="4" ng-maxlength="10"></input>
           </label>
 
           <label class="item item-input" align="left">
             <span class="input-label">Confirm Password</span>
-            <input type="password" class="hidden" name="confirmPassword" ng-model="data.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10">
+            <input type="password" class="hidden" name="confirmPassword" placeholder="********" ng-model="data.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10"></input>
           </label>
 
           <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.</span>

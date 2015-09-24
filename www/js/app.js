@@ -22,52 +22,57 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
 
 
 
-
-
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-// nexted state app, app.home, app.signUp, app.signIn with assumption that app state gives the upper menu bar
-  $stateProvider
+.config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
     .state('app', {
       url: "/app",
       abstract: true,
       templateUrl: 'templates/app.html',
-      data:{
-        requireLogin: false
-      }
+      controller: 'AppController'
+
     })
     .state('app.loggedIn',{
       url: "/loggedIn",
       abstract: true,
-      templateUrl: 'templates/loggedIn.html',
       data:{
         requiredLogin: true
+      },
+      views:{
+        'home':{
+          controller: 'loggedInCtrl',
+          templateUrl: 'templates/loggedIn.html'
+        }
       }
     })
     .state('app.loggedOut',{
       url: "/loggedOut",
       abstract: true,
-      templateUrl: 'templates/loggedOut.html',
       data:{
         requiredLogin: false
+      },
+      views:{
+        'home':{
+          controller: 'loggedOutCtrl',
+          templateUrl: 'templates/loggedOut.html'
+        }
       }
     })
     .state('app.loggedOut.home', {
       url: '/home',
-      cache: 'false',
       views: {
-        'appContent' :{
+        'loggedOut-placeholder' :{
           templateUrl: 'templates/home.html',
           controller : 'HomeController'
         }
       }
     })
-    .state('app.loggedOut.signUp',{
-      url: '/signUp',
+    .state('app.loggedOut.signOff',{
+      url: '/signOff',
       cache: 'false',
-      views: {
-        'appSignUp':{
-          templateUrl: 'templates/signUp.html',
-          controller: 'signUpController'
+      views:{
+        'loggedOut-placeholder':{
+          templateUrl: 'template/home.html',
+          controller: 'signOffController'
         }
       }
     })
@@ -75,7 +80,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       url: '/signIn',
       cache: 'false',
       views: {
-        'appSignIn':{
+        'loggedOut-placeholder':{
           templateUrl: 'templates/signIn.html',
           controller: 'signInController',
           controllerAs: 'login'
@@ -89,7 +94,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         requiredLogin: true
       },
       views: {
-        'UserInfo':{
+        'loggedIn-placeholder':{
           templateUrl: 'templates/userInfo.html',
           controller: 'userInfoController',
           controllerAs: 'userInfo'
@@ -97,19 +102,17 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
-    .state('app.settings', {
+    .state('app.loggedOut.settings', {
       url: '/settings',
       views:{
-        'Settings':{
+        'loggedOut-placeholder':{
           templateUrl: 'templates/settings.html',
-          controller: 'SettingsCtrl',
+          controller: 'settingsCtrl',
           controllerAs: 'settings'
         }
       }
     })
 
 
-
   $urlRouterProvider.otherwise('app/loggedOut/home');
-  //$httpProvider.interceptors.push('APIInterceptor');
 });
