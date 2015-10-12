@@ -93,9 +93,21 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('userInfoController', function ($scope, Event, $ionicLoading){
 
+    var unix_timestamp = 1318305600000;
+
+    var date = new Date(unix_timestamp*1000);
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    // will display time in 21:00:00 format
+    var formattedTime = hours + ':' + minutes + ':' + seconds;
+
+    alert('date; time: ' + date +  ';' + formattedTime);
+
     $ionicLoading.show({
       template: 'Loading...'
     });
     $scope.event = Event.get();
     $ionicLoading.hide()
+
 });
