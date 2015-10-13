@@ -7,7 +7,7 @@ WGN's **Vertex** is a generic event notification software with specific function
 
 Developer Access
 ---------------------
-**Vertex** has recognized user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator account is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account, contact accessVertex@wirelessglue.co.jp.
+**Vertex** has recognized user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator account is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account, contact info@wirelessglue.co.jp.
 
 Session-less Server and Client Application States
 -----------------------------------------------
