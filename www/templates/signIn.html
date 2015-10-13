@@ -29,12 +29,12 @@
 
           <label class="item item-input" align="left">
             <span class="input-label" >Password</span>
-            <input type="password" class="hidden" name="password" placeholder="********" ng-model="data.password" ng-required="true" ng-minlength="4" ng-maxlength="10"></input>
+            <input type="password" name="passCode" placeholder="********" ng-model="data.passCode" ng-required="true" ng-minlength="4" ng-maxlength="30"></input>
           </label>
 
           <label class="item item-input" align="left">
             <span class="input-label">Confirm Password</span>
-            <input type="password" class="hidden" name="confirmPassword" placeholder="********" ng-model="data.confirmPassword" ng-required="true" ng-minlength="4" ng-maxlength="10"></input>
+            <input type="password" name="confirmCode" placeholder="********" ng-model="data.confirmCode" ng-required="true" ng-minlength="4" ng-maxlength="30"></input>
           </label>
 
           <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.</span>
