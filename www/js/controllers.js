@@ -34,12 +34,42 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 .controller('loggedInCtrl', function() {
 })
 
+.controller('functionsController', function ($scope, $ionicHistory){
+
+  $scope.functionlists = [
+    { title: 'Events', id: 1 },
+    { title: 'Users', id: 2 },
+    { title: 'Accounts', id: 3 },
+    { title: 'Programs', id: 4 },
+    { title: 'Data Sets', id: 5 },
+    { title: 'Gateway Status', id: 6 },
+    { title: 'System Configuration', id: 7 }
+  ];
+
+})
+
+.controller('fcn_sysconfController',function ($scope, $ionicHistory){
+
+  $scope.function_sysconflists = [
+    { title: 'Global Settings', id: 1 },
+    { title: 'Upstream Connection', id: 2 },
+    { title: 'Registration', id: 3 },
+    { title: 'Device Configuration', id: 4 },
+    { title: 'Collector Configuration', id: 5 },
+    { title: 'Email Configuration', id: 6 },
+    { title: 'Authentication', id: 7 }
+  ];
+
+})
+
+
 .controller('refresh_control',function($scope,$interval, $localstorage){
 
   $interval(function(){
     $scope.checkValue=$localstorage.get('loggedInState');
     },1000);
 })
+
 
 
 .controller("HomeController", ['$scope', '$state', '$ionicHistory', function($scope, $state, $ionicHistory){
@@ -107,14 +137,15 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
+.controller('refresh_control_http_header', function ($scope, $interval, $route){
 
+  $interval(function(){
+    $scope.reloadRoute = $route.reload();
+   },500);
 
+})
 
 .controller('userInfoController', function ($scope, Event, $ionicLoading){
-
-    $scope.reloadRoute = function() {
-     $route.reload();
-    }
 
     var unix_timestamp = 1318305600000;
 
