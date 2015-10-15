@@ -16,6 +16,28 @@ WGN社**Vertex**は汎用イベント配信ソフトウェアであり、さら�
 完全なソフトウェアを提供するのが目的ではありません。開発者は本SDKを介して独自の
 クライアントソフトウェアを独自のユースケース分析により開発することが前提です。
 
+開発者アクセス
+-----------------
+**Vertex** はユーザー・アクセス制限及ログイン・セッション管理が実装されています。  ユーザーは
+３種類のクラス分けがされています：アドミニストレータ、オペレーター、及アカウント（顧客）。
+Vertex APIを通じて３ユーザー階級全てに接続は可能ですが、当SDKではオペレーター及アカウント
+ユーザー層のみにアクセスを制限しております。代表例として、オペレータ・ユーザーがサンプル
+Vertex上予め準備されています。接続・利用にあたっては、john@wirelessglue.comに連絡して
+いただき、Vertex API利用権利であるオペレータ又はアカウント・ユーザー情報を管理者から
+取得する必要があります。
+
+基本特徴：　セッションなしサーバーとクライアントアプリ状態管理
+-----------------------------------------------------
+**Vertex** 機能はREST型APIを通じて、基本認証（ベーシック・オーセンティケーション）を普通の
+HTTPメソッドを利用することで活用できます。開発者が上記email連絡先からユーザー・パスワード情報
+を取得すると、バーチャル・ユーザーとしてAPIへ接続が可能になります。各API接続は
+ユーザー・パスワードをHTTPヘッダーへ入れる事でトランズアクションが可能になり、HTTP レスポンス
+が返信されます。そのため、Vertex はその都度トランスアクションを行い、状態情報は管理しません。
+
+
+
+
+
 
 Vertex Software Development Kit for Client Single Page Applications
 =========================================
@@ -34,7 +56,7 @@ vertexSDK is aimed at introducing the developer to access the API of Vertex 2.3.
 
 Developer Access
 ---------------------
-**Vertex** has user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator account is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account, contact accessVertex@wirelessglue.co.jp.
+**Vertex** has user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator user is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account, contact john@wirelessglue.com.
 
 Basic Feature:  Session-less Server and Client Application States
 -----------------------------------------------
