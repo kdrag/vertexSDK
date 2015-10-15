@@ -1,5 +1,27 @@
+
+Vertex クライアントソフトウェア開発キット(SDK)
+=========================================
+(pre-alpha v.0.1.0  http://apiforvertex.appspot.com/)
+
+
+当説明書はワイヤレス・グルーネットワークス（株）、ソフトウェア**Vertex v2.3.x**のREST型APIを活用するハイブリッドHTML5モバイルアプリの作成支援をする情報です。
+
+WGN社**Vertex**は汎用イベント配信ソフトウェアであり、さらに、エネルギー管理や電力需要抑制・デマンドレスポンス（DR）をOpenADR2.0b[^stackedit]方式に沿ってデータ配信を行います。VertexはOpenADR2.0b試験・認証済みで、対応可能なOpenADR2.0b VTNにVertexはVENとして接続できます。ロゴ認証資格を継承するには、WGN社と商業ライセンスが必要です。VertexはWGN社固有のソフトウェアですが、当クライアントSDKは開発者向けにクライアントアプレイケーションを支援し、DR信号取得を可能にします。
+
+目的
+--------
+開発者がVertex 2.3.x のAPIを活用出来る様にすることがvertexSDKの目的です。
+機能はジャバスクリプト、HTML, CSSファイルを通じて単一ページアプリ（**SPA**)
+を作成するのが基本です。このSDKはクライエントソフトウェアの開発紹介であり、
+完全なソフトウェアを提供するのが目的ではありません。開発者は本SDKを介して独自の
+クライアントソフトウェアを独自のユースケース分析により開発することが前提です。
+
+
 Vertex Software Development Kit for Client Single Page Applications
 =========================================
+(pre-alpha v.0.1.0  http://apiforvertex.appspot.com/)
+
+
 
 This document is a primer to facilitate development of hybrid HTML5 based mobile application to access Wireless Glue Networks, Inc.'s (WGN) **Vertex v2.3.x** software REST API.
 
@@ -65,18 +87,3 @@ Client application automatically polls Vertex and pulls event information, synch
 Client application monitors the active event and displays a modal to indicate the status
 
 Client application can opt in or out of the event
-
-
-
-
-
-
-
-
-
-Vertex クライアントソフトウェア開発キット(SDK)
-=========================================
-
-当説明書はワイヤレス・グルーネットワークス（株）、ソフトウェア**Vertex v2.3.x**のREST型APIを活用するハイブリッドHTML5モバイルアプリの作成支援をする情報です。
-
-WGN社**Vertex**は汎用イベント配信ソフトウェアであり、さらに、エネルギー管理や電力需要抑制・デマンドレスポンス（DR）をOpenADR2.0b[^stackedit]方式に沿ってデータ配信を行います。VertexはOpenADR2.0b試験・認証済みで、対応可能なOpenADR2.0b VTNにVertexはVENとして接続できます。ロゴ認証資格を継承するには、WGN社と商業ライセンスが必要です。VertexはWGN社固有のソフトウェアですが、当クライアントSDKは開発者向けにクライアントアプレイケーションを支援し、DR信号取得を可能にします。
