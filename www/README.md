@@ -34,6 +34,79 @@ HTTPメソッドを利用することで活用できます。開発者が上記e
 ユーザー・パスワードをHTTPヘッダーへ入れる事でトランズアクションが可能になり、HTTP レスポンス
 が返信されます。そのため、Vertex はその都度トランスアクションを行い、状態情報は管理しません。
 
+クライアント側アプリはユーザーが直接操作します。セキュリティー認証情報などはインプットされ、
+管理・保存の対象になります。操作を終えるとその情報は削除されます。拠ってセッションの管理を行う事で、
+vertexSDKのクアリアントアプリはログイン状態を管理します。アプリケーションがリセットされると、
+ログアウト状態へ遷移します。ログイン状態にある場合、クライアントアプリはVertex APIと接続・データ
+交換できます。
+
+> **注意事項: **
+<i class="icon-lock"></i>SSL 接続はVertex商業ラインセンスを取得し、ホスティングサービスを
+利用することで可能です。
+
+基本特徴：　AngularJS/Ionic Frameworkを用いたJAVASCRIPT MVC
+=======================================================
+vertexSDKはクライアントアプリケーションソフト開発を簡易化する為に、 Mode-View-Controller
+(MVC)フレームワークにAngularJSを利用しています。更に、近代的なモバイルアプリのスタイリングを
+実現するのにAngluarJSを活用したIonic Frameworkを利用しています。開発ツールには、お好みの
+物を利用できます。ここでは前提としてブラウザーに**Firefox**とディバグに**Firebug**を使い、
+プロキシ・サーバーに**Ionic Serve**を想定します。エディターには、**Atom**などが便利です
+(https://atom.io/)。
+
+Cross Origin Resource Sharing (CORS)
+-----------------------------------
+(参考：http://dev.classmethod.jp/etc/about-cors/)
+ハイブリッドHTML5アプリを開発するにあたって、FirefoxやChromeブラウザーのCross Origin
+Resource Sharing (CORS)方針機構に注意しなければなりません。通常ブラウザーは、HTMLページ
+上では他のウェブサービスと直接ディープリンクを禁じており、サーバー側との交信のみを許可しています。
+これは、悪質はコードが無断でローカルファイルやその他のリソースをアクセスできないようにする
+セキュリティー方針機能です。
+
+ハイブリッドHTML5アプリの開発環境は普段ブラウザー（**Firefox** **Firebug**など）を利用し、
+試作品を検証します。もしコードが単一ページアプリ（single page applicaiton: SPA）である場合、
+直接ウェブサービスへ接続しに行き、ブラウザーのCORS方針機能が動作しHTTPメソッドの動作が
+阻害されます。実際SPAが独立アプリとしてビルド・パッケージされた場合、ブラウザーの外で動作する
+為CORSが問題にはなりません。しかし開発段階ではブラウザーを活用して施策することが最も効率的な
+ことから、対策が必要です。
+
+ブラウザーCORSの解決策としてIonic Frameworkの指令・コマンド・ライン・インストラクション(Command
+Line Instruction: CLI) **IONIC SERVE**を活用することで、簡易的にプロキシ・サーバーを
+立ち上げ、そのサーバーを利用して外部ウェブリソースへ接続できます。Ionic プロジェクトの
+ルートディレクトリーに_ionic.project_ファイルを用意し、プロキシ・サーバーURLを記載し、CLI
+を発行することで、プロキシ・サーバーが起動し、_ionic.project_ファイルから情報を取得、外部
+ウェブリソースへの接続を可能にするアクセスルートを確立します。vertexSDKコード内ではlocalhost:8100
+を外部ウェブリソースとして指定することで、プロキシ・サーバーを利用します。
+
+基本特徴：　プロジェクト構造
+-----------------------
+プロジェクトは、AngularJSのディレクトリー構造とIonic Frameworkを利用します。
+
+###Root
+: #####**/www** : Parent directory
+	: ######**/css** : Custom Cascading Style Sheets
+	: #####**/img** : jpeg or png image resouces
+	: #####**/js**  : application logic, controllers, and services
+	: #####**/lib** : javascript framework and other tools
+	: #####**/templates** : HTML pages
+	: ######index.html
+
+
+対象ユースケース
+=============
+vertexSDKクライアントアプリケーションは下記の基本操作を行います：
+
+1)　クライアントアプリケーションのログオン
+2)　Vertexからデータを引き出す
+		a-過去、現在、進行中のイベント
+		b-イベントを選択し詳細を見る
+
+クライアントアプリケーションは自動的にVertexをポールし、イベント情報を取得します。イベントリスト
+はVertex上の情報と同期します。
+
+クライアントアプリケーションはアクティブのイベントを監視し、状態をディスプレイします。
+
+クライアントアプリケーションはイベントのオプトイン・オプトアウトできます。
+
 
 
 
@@ -82,7 +155,7 @@ To circumvent this problem, makers of the Ionic Framework provides a quick and e
 
 Basic Feature:  Project structure
 --------------------------------------
-The structure of the project follows Angular directory organization, and utilizes Ionic Framework resources.
+The structure of the project follows AngularJS directory organization, and utilizes Ionic Framework resources.
 
 ###Root
 : #####**/www** : Parent directory
