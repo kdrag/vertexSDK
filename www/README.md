@@ -22,9 +22,9 @@ WGN社**Vertex**は汎用イベント配信ソフトウェアであり、さら�
 ３種類のクラス分けがされています：アドミニストレータ、オペレーター、及アカウント（顧客）。
 Vertex APIを通じて３ユーザー階級全てに接続は可能ですが、当SDKではオペレーター及アカウント
 ユーザー層のみにアクセスを制限しております。代表例として、オペレータ・ユーザーがサンプル
-Vertex上予め準備されています。接続・利用にあたっては、john@wirelessglue.comに連絡して
-いただき、Vertex API利用権利であるオペレータ又はアカウント・ユーザー情報を管理者から
-取得する必要があります。
+Vertex上予め準備されています。接続・利用にあたっての情報及評価ラインセンスは、
+john@wirelessglue.comに連絡していただき、Vertex API利用権利であるオペレータ又は
+アカウント・ユーザー情報を管理者から取得する必要があります。
 
 基本特徴：　セッションなしサーバーとクライアントアプリ状態管理
 -----------------------------------------------------
@@ -56,7 +56,7 @@ vertexSDK is aimed at introducing the developer to access the API of Vertex 2.3.
 
 Developer Access
 ---------------------
-**Vertex** has user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator user is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account, contact john@wirelessglue.com.
+**Vertex** has user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator user is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account and relevant evaluation license, contact john@wirelessglue.com.
 
 Basic Feature:  Session-less Server and Client Application States
 -----------------------------------------------
