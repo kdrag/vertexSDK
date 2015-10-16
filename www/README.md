@@ -108,7 +108,7 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 クライアントアプリケーションはイベントのオプトイン・オプトアウトできます。
 
 
-/img　の画像はここあらです：  http://www.freeimages.com/
+/img　の画像はここからです：  http://www.freeimages.com/
 
 
 
