@@ -108,6 +108,7 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 クライアントアプリケーションはイベントのオプトイン・オプトアウトできます。
 
 
+/img　の画像はここあらです：  http://www.freeimages.com/
 
 
 
@@ -182,3 +183,6 @@ Client application automatically polls Vertex and pulls event information, synch
 Client application monitors the active event and displays a modal to indicate the status
 
 Client application can opt in or out of the event
+
+
+Images in /img from:  http://www.freeimages.com/
