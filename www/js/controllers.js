@@ -72,9 +72,24 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 })
 
 .controller('functionControllerSecondary', function($scope, $ionicHistory, $location){
+
+  var valuelist = [
+    { title: 'Home', id: 1 },
+    { title: 'Events', id: 2 },
+    { title: 'Users', id: 3 },
+    { title: 'Accounts', id: 4 },
+    { title: 'Programs', id: 5 },
+    { title: 'Data Sets', id: 6 },
+    { title: 'Gateway Status', id: 7 },
+    { title: 'System Configuration', id: 8 }
+  ];
+
+
   var page= $location.url().slice(-1);
-  //alert(page);
+  var index = parseInt(page)-1;
   $scope.value=page;
+
+  document.getElementById('textInsert').innerHTML = 'Function is ' + valuelist[index].title;
 
 })
 
