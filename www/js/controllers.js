@@ -36,29 +36,45 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('functionsController', function ($scope, $ionicHistory){
 
+
   $scope.functionlists = [
-    { title: 'Events', id: 1 },
-    { title: 'Users', id: 2 },
-    { title: 'Accounts', id: 3 },
-    { title: 'Programs', id: 4 },
-    { title: 'Data Sets', id: 5 },
-    { title: 'Gateway Status', id: 6 },
-    { title: 'System Configuration', id: 7 }
-  ];
+    { title: 'Home', id: 1 },
+    { title: 'Events', id: 2 },
+    { title: 'Users', id: 3 },
+    { title: 'Accounts', id: 4 },
+    { title: 'Programs', id: 5 },
+    { title: 'Data Sets', id: 6 },
+    { title: 'Gateway Status', id: 7 },
+    { title: 'System Configuration', id: 8 }
+  ]
+
+  $scope.selectItem=function(functionlist){
+    //alert(functionlist.title + " " + functionlist.id)
+  }
 
 })
 
 .controller('fcn_sysconfController',function ($scope, $ionicHistory){
 
   $scope.function_sysconflists = [
-    { title: 'Global Settings', id: 1 },
-    { title: 'Upstream Connection', id: 2 },
-    { title: 'Registration', id: 3 },
-    { title: 'Device Configuration', id: 4 },
-    { title: 'Collector Configuration', id: 5 },
-    { title: 'Email Configuration', id: 6 },
-    { title: 'Authentication', id: 7 }
+    { title: 'Home', id: 1 },
+    { title: 'Global Settings', id: 2 },
+    { title: 'Upstream Connection', id: 3 },
+    { title: 'Registration', id: 4 },
+    { title: 'Device Configuration', id: 5 },
+    { title: 'Collector Configuration', id: 6 },
+    { title: 'Email Configuration', id: 7 },
+    { title: 'Authentication', id: 8 }
   ];
+
+
+
+})
+
+.controller('functionControllerSecondary', function($scope, $ionicHistory, $location){
+  var page= $location.url().slice(-1);
+  //alert(page);
+  $scope.value=page;
 
 })
 

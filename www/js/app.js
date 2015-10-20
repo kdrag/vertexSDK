@@ -117,26 +117,16 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     })
 
     .state('app.loggedIn.single', {
-      url: "/functions/:functionlistId",
-      views: {
-        'loggedIn-placeholder': {
-          templateUrl: "templates/functions_sysconflist.html",
-          controller: 'functionController'
-        }
-      }
-    })
-
-    .state('app.loggedIn.functions.sysconf',{
-      url: '/sysconf',
+      url: '/:id',
       cache: 'false',
       data:{
         requiredLogin: true
-      },
-      views: {
+      }
+      ,
+      views:{
         'loggedIn-placeholder':{
-          templateUrl: 'templates/fcn_sysconf.html',
-          controller: 'fcn_sysconfController',
-          controllerAs: 'functions_sysconf'
+          templateUrl: 'templates/functionSecondary.html',
+          controller: 'functionControllerSecondary'
         }
       }
     })
