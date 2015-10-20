@@ -24,8 +24,6 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
   $scope.checkValue=$localstorage.get('loggedInState');
 
-
-
 }])
 
 .controller('loggedOutCtrl', function() {
@@ -71,7 +69,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
-.controller('functionControllerSecondary', function($scope, $ionicHistory, $location){
+.controller('functionControllerSecondary', function($scope, $ionicHistory, $location, $ionicViewService){
 
   var valuelist = [
     { title: 'Home', id: 1 },
@@ -88,8 +86,17 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   var page= $location.url().slice(-1);
   var index = parseInt(page)-1;
   $scope.value=page;
-
+  //valuelist[index].title specifies the Function selected by the User
   document.getElementById('textInsert').innerHTML = 'Function is ' + valuelist[index].title;
+
+  if (valuelist[index].title=='Home'){
+    //alert(valuelist[index].id+" "+valuelist[index].title);
+    //turn off the "back" arrow
+    $ionicViewService.nextViewOptions({
+      disableBack: true
+    });
+    $location.path('#/app/loggedOut/home');
+  }
 
 })
 
