@@ -11,7 +11,6 @@
     <ion-content padding="true">
 
       <ion-list>
-        <!-- ion-item align="left"  ng-repeat="functionlist in functionlists" href="#/app/loggedIn/{{functionlist.id}}" -->
         <ion-item align="left"  ng-repeat="functionlist in functionlists" ng-click="selectItem(functionlist)" href="#/app/loggedIn/{{functionlist.id}}">
               {{functionlist.title}}
         </ion-item>

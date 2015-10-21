@@ -32,6 +32,9 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 .controller('loggedInCtrl', function() {
 })
 
+.controller('loggedInFcnCtrl', function() {
+})
+
 .controller('functionsController', function ($scope, $ionicHistory){
 
 
@@ -65,11 +68,16 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Authentication', id: 8 }
   ];
 
+  $scope.selectConfigItem=function(function_sysconflist){
+    alert(function_sysconflist.title + " " + function_sysconflist.id)
+  }
 
 
 })
 
 .controller('functionControllerSecondary', function($scope, $ionicHistory, $location, $ionicViewService){
+
+  //alert('at functionControllerSecondary');
 
   var valuelist = [
     { title: 'Home', id: 1 },
@@ -96,9 +104,47 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       disableBack: true
     });
     $location.path('#/app/loggedOut/home');
-  }
+  }else{
+    if (valuelist[index].title=='System Configuration'){
+    //alert('System Configuration');
 
+    $location.path('#/app/loggedIn/function/sysConfig');
+   }};
 })
+
+.controller('functionControllerTertiary', function($scope, $ionicHistory, $location, $ionicViewService){
+
+  alert('at functionControllerTertiary');
+
+
+  var valuelist_conf = [
+    { title: 'Home', id: 1 },
+    { title: 'Global Settings', id: 2 },
+    { title: 'Upstream Connection', id: 3 },
+    { title: 'Registration', id: 4 },
+    { title: 'Device Configuration', id: 5 },
+    { title: 'Collector Configuration', id: 6 },
+    { title: 'Email Configuration', id: 7 },
+    { title: 'Authentication', id: 8 }
+  ];
+
+
+  var pageConf= $location.url().slice(-1);
+  var indexConf = parseInt(pageConf)-1;
+  $scope.valueconf=pageConf;
+  //valuelist_conf[indexConf].title specifies the Function selected by the User
+  document.getElementById('textConfInsert').innerHTML = 'Function is ' + valuelist_conf[indexConf].title;
+
+  if (valuelist_conf[indexConf].title=='Home'){
+    alert(valuelist_conf[indexConf].id+" "+valuelist_conf[indexConf].title);
+    //turn off the "back" arrow
+    $ionicViewService.nextViewOptions({
+      disableBack: true
+    });
+    $location.path('#/app/loggedOut/home');
+  }
+})
+
 
 
 .controller('refresh_control',function($scope,$interval, $localstorage){

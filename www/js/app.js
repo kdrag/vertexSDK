@@ -57,6 +57,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
+
     .state('app.loggedOut.home', {
       url: '/home',
       views: {
@@ -130,6 +131,52 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
+
+    .state('app.loggedIn.function',{
+      url: "/function",
+      abstract: true,
+      data:{
+        requiredLogin: true
+      },
+      views:{
+        'fcn_sys':{
+          controller: 'loggedInFcnCtrl',
+          templateUrl: 'templates/function.html'
+        }
+      }
+    })
+
+    .state('app.loggedIn.function.sysConfig',{
+      url: '/sysConfig',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      },
+      views: {
+        'function-placeholder':{
+          templateUrl: 'templates/fcn_sysconf.html',
+          controller: 'fcn_sysconfController',
+          controllerAs: 'sysConfig'
+        }
+      }
+    })
+
+    .state('app.loggedIn.function.single', {
+      url: '/:id',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'function-placeholder':{
+          templateUrl: 'templates/functionTertiary.html',
+          controller: 'functionControllerTertiary'
+        }
+      }
+    })
+
+
 
 
     .state('app.loggedOut.settings', {
