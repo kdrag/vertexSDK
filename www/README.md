@@ -1,7 +1,8 @@
 
 Vertex クライアントソフトウェア開発キット(SDK)
 =========================================
-(pre-alpha v.0.1.0  http://apiforvertex.appspot.com/)
+(vertexSDK クライアント：pre-alpha v.0.1.0）
+(Vertex 2.3.x API http://apiforvertex.appspot.com/)
 
 
 当説明書はワイヤレス・グルーネットワークス（株）、ソフトウェア**Vertex v2.3.x**のREST型APIを活用するハイブリッドHTML5モバイルアプリの作成支援をする情報です。
@@ -115,7 +116,8 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 
 Vertex Software Development Kit for Client Single Page Applications
 =========================================
-(pre-alpha v.0.1.0  http://apiforvertex.appspot.com/)
+(vertexSDK client app: pre-alpha  v.0.1.0 )
+(Vertex 2.3.x API http://apiforvertex.appspot.com/)
 
 
 

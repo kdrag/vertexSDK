@@ -107,7 +107,6 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   }else{
     if (valuelist[index].title=='System Configuration'){
     //alert('System Configuration');
-
     $location.path('#/app/loggedIn/function/sysConfig');
    }};
 })
