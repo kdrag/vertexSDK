@@ -67,6 +67,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
+
     .state('app.loggedOut.signOff',{
       url: '/signOff',
       cache: 'false',
@@ -132,34 +133,34 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
-    .state('app.loggedIn.function',{
-      url: "/function",
+// view based routing is not working; URL changes but not the views / html; carrying over secondary view still
+
+    .state('app.loggedIn.function', {
+      url: '/function',
       abstract: true,
-      data:{
-        requiredLogin: true
-      },
-      views:{
-        'fcn_sys':{
-          controller: 'loggedInFcnCtrl',
-          templateUrl: 'templates/function.html'
+      views: {
+        'functions' :{
+          templateUrl: 'templates/function.html',
+          controller : 'functionController'
         }
       }
     })
 
-    .state('app.loggedIn.function.sysConfig',{
-      url: '/sysConfig',
-      cache: 'false',
+
+    .state('app.loggedIn.function.functionSys',{
+      url: "/functionSys",
       data:{
         requiredLogin: true
       },
-      views: {
+      views:{
         'function-placeholder':{
-          templateUrl: 'templates/fcn_sysconf.html',
-          controller: 'fcn_sysconfController',
-          controllerAs: 'sysConfig'
+          controller: 'functionSysController',
+          templateUrl: 'templates/functionSys.html',
+          controllerAs: 'functionSys'
         }
       }
     })
+
 
     .state('app.loggedIn.function.single', {
       url: '/:id',
@@ -175,6 +176,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
+
 
 
 

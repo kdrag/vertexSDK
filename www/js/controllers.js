@@ -35,6 +35,9 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 .controller('loggedInFcnCtrl', function() {
 })
 
+.controller('function.controller', function() {
+})
+
 .controller('functionsController', function ($scope, $ionicHistory){
 
 
@@ -55,9 +58,11 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
-.controller('fcn_sysconfController',function ($scope, $ionicHistory){
+.controller('functionSysController',function ($scope, $ionicHistory){
 
-  $scope.function_sysconflists = [
+  alert('at functionSysController');
+
+  $scope.function_sysconfiglists = [
     { title: 'Home', id: 1 },
     { title: 'Global Settings', id: 2 },
     { title: 'Upstream Connection', id: 3 },
@@ -68,14 +73,14 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Authentication', id: 8 }
   ];
 
-  $scope.selectConfigItem=function(function_sysconflist){
-    alert(function_sysconflist.title + " " + function_sysconflist.id)
-  }
+  //$scope.selectConfigItem=function(function_sysconfiglist){
+  //  alert(function_sysconfiglist.title + " " + function_sysconfiglist.id)
+  //}
 
 
 })
 
-.controller('functionControllerSecondary', function($scope, $ionicHistory, $location, $ionicViewService){
+.controller('functionControllerSecondary', function($state, $scope, $ionicHistory, $location, $ionicViewService){
 
   //alert('at functionControllerSecondary');
 
@@ -96,22 +101,24 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   $scope.value=page;
   //valuelist[index].title specifies the Function selected by the User
   document.getElementById('textInsert').innerHTML = 'Function is ' + valuelist[index].title;
-
   if (valuelist[index].title=='Home'){
-    //alert(valuelist[index].id+" "+valuelist[index].title);
     //turn off the "back" arrow
     $ionicViewService.nextViewOptions({
       disableBack: true
     });
-    $location.path('#/app/loggedOut/home');
+    $state.go('app.loggedOut.home')
   }else{
     if (valuelist[index].title=='System Configuration'){
-    //alert('System Configuration');
-    $location.path('#/app/loggedIn/function/sysConfig');
-   }};
+    $ionicViewService.nextViewOptions({
+      disableBack: true
+    });
+    //$state.go('app.loggedOut.settings')
+    $state.go('app.loggedIn.function.functionSys')
+    //$state.go('app.loggedIn.functionSys')
+   }}
 })
 
-.controller('functionControllerTertiary', function($scope, $ionicHistory, $location, $ionicViewService){
+.controller('functionControllerTertiary', function($state, $rootScope, $scope, $ionicHistory, $location, $ionicViewService){
 
   alert('at functionControllerTertiary');
 
@@ -140,7 +147,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     $ionicViewService.nextViewOptions({
       disableBack: true
     });
-    $location.path('#/app/loggedOut/home');
+    $state.go('app.loggedOut.home');
   }
 })
 
