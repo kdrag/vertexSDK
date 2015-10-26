@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Vertexsdk : Ionic フレームワークを用いてVertex 2.3.x OpenADR2.0b VEN REST型APIを活用する SPAクライアント">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Vertexsdk</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jlinglue/vertexSDK">View on GitHub</a>
+
+          <h1 id="project_title">Vertexsdk</h1>
+          <h2 id="project_tagline">Ionic フレームワークを用いてVertex 2.3.x OpenADR2.0b VEN REST型APIを活用する SPAクライアント</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jlinglue/vertexSDK/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jlinglue/vertexSDK/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="vertex-クライアントソフトウェア開発キットsdk" class="anchor" href="#vertex-%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA%E3%82%AD%E3%83%83%E3%83%88sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vertex クライアントソフトウェア開発キット(SDK)</h1>
+
+<p>(vertexSDK クライアント：pre-alpha v.0.1.0）
+(Vertex 2.3.x API <a href="http://apiforvertex.appspot.com/">http://apiforvertex.appspot.com/</a>)</p>
+
+<p>当説明書はワイヤレス・グルーネットワークス（株）、ソフトウェア<strong>Vertex v2.3.x</strong>のREST型APIを活用するハイブリッドHTML5モバイルアプリの作成支援をする情報です。</p>
+
+<p>WGN社<strong>Vertex</strong>は汎用イベント配信ソフトウェアであり、さらに、エネルギー管理や電力需要抑制・デマンドレスポンス（DR）をOpenADR2.0b[^stackedit]方式に沿ってデータ配信を行います。VertexはOpenADR2.0b試験・認証済みで、対応可能なOpenADR2.0b VTNにVertexはVENとして接続できます。ロゴ認証資格を継承するには、WGN社と商業ライセンスが必要です。VertexはWGN社固有のソフトウェアですが、当クライアントSDKは開発者向けにクライアントアプレイケーションを支援し、DR信号取得を可能にします。</p>
+
+<h2>
+<a id="目的" class="anchor" href="#%E7%9B%AE%E7%9A%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>目的</h2>
+
+<p>開発者がVertex 2.3.x のAPIを活用出来る様にすることがvertexSDKの目的です。
+機能はジャバスクリプト、HTML, CSSファイルを通じて単一ページアプリ（<strong>SPA</strong>)
+を作成するのが基本です。このSDKはクライエントソフトウェアの開発紹介であり、
+完全なソフトウェアを提供するのが目的ではありません。開発者は本SDKを介して独自の
+クライアントソフトウェアを独自のユースケース分析により開発することが前提です。</p>
+
+<h2>
+<a id="開発者アクセス" class="anchor" href="#%E9%96%8B%E7%99%BA%E8%80%85%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>開発者アクセス</h2>
+
+<p><strong>Vertex</strong> はユーザー・アクセス制限及ログイン・セッション管理が実装されています。  ユーザーは
+３種類のクラス分けがされています：アドミニストレータ、オペレーター、及アカウント（顧客）。
+Vertex APIを通じて３ユーザー階級全てに接続は可能ですが、当SDKではオペレーター及アカウント
+ユーザー層のみにアクセスを制限しております。代表例として、オペレータ・ユーザーがサンプル
+Vertex上予め準備されています。接続・利用にあたっての情報及評価ラインセンスは、
+<a href="mailto:john@wirelessglue.com">john@wirelessglue.com</a>に連絡していただき、Vertex API利用権利であるオペレータ又は
+アカウント・ユーザー情報を管理者から取得する必要があります。</p>
+
+<h2>
+<a id="基本特徴セッションなしサーバーとクライアントアプリ状態管理" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%B4%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AA%E3%81%97%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%A8%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E7%8A%B6%E6%85%8B%E7%AE%A1%E7%90%86" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本特徴：　セッションなしサーバーとクライアントアプリ状態管理</h2>
+
+<p><strong>Vertex</strong> 機能はREST型APIを通じて、基本認証（ベーシック・オーセンティケーション）を普通の
+HTTPメソッドを利用することで活用できます。開発者が上記email連絡先からユーザー・パスワード情報
+を取得すると、バーチャル・ユーザーとしてAPIへ接続が可能になります。各API接続は
+ユーザー・パスワードをHTTPヘッダーへ入れる事でトランズアクションが可能になり、HTTP レスポンス
+が返信されます。そのため、Vertex はその都度トランスアクションを行い、状態情報は管理しません。</p>
+
+<p>クライアント側アプリはユーザーが直接操作します。セキュリティー認証情報などはインプットされ、
+管理・保存の対象になります。操作を終えるとその情報は削除されます。拠ってセッションの管理を行う事で、
+vertexSDKのクアリアントアプリはログイン状態を管理します。アプリケーションがリセットされると、
+ログアウト状態へ遷移します。ログイン状態にある場合、クライアントアプリはVertex APIと接続・データ
+交換できます。</p>
+
+<blockquote>
+<p>*<em>注意事項: *</em>
+<i></i>SSL 接続はVertex商業ラインセンスを取得し、ホスティングサービスを
+利用することで可能です。</p>
+</blockquote>
+
+<h1>
+<a id="基本特徴angularjsionic-frameworkを用いたjavascript-mvc" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%B4angularjsionic-framework%E3%82%92%E7%94%A8%E3%81%84%E3%81%9Fjavascript-mvc" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本特徴：　AngularJS/Ionic Frameworkを用いたJAVASCRIPT MVC</h1>
+
+<p>vertexSDKはクライアントアプリケーションソフト開発を簡易化する為に、 Mode-View-Controller
+(MVC)フレームワークにAngularJSを利用しています。更に、近代的なモバイルアプリのスタイリングを
+実現するのにAngluarJSを活用したIonic Frameworkを利用しています。開発ツールには、お好みの
+物を利用できます。ここでは前提としてブラウザーに<strong>Firefox</strong>とディバグに<strong>Firebug</strong>を使い、
+プロキシ・サーバーに<strong>Ionic Serve</strong>を想定します。エディターには、<strong>Atom</strong>などが便利です
+(<a href="https://atom.io/)%E3%80%82">https://atom.io/)。</a></p>
+
+<h2>
+<a id="cross-origin-resource-sharing-cors" class="anchor" href="#cross-origin-resource-sharing-cors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross Origin Resource Sharing (CORS)</h2>
+
+<p>(参考：<a href="http://dev.classmethod.jp/etc/about-cors/">http://dev.classmethod.jp/etc/about-cors/</a>)
+ハイブリッドHTML5アプリを開発するにあたって、FirefoxやChromeブラウザーのCross Origin
+Resource Sharing (CORS)方針機構に注意しなければなりません。通常ブラウザーは、HTMLページ
+上では他のウェブサービスと直接ディープリンクを禁じており、サーバー側との交信のみを許可しています。
+これは、悪質はコードが無断でローカルファイルやその他のリソースをアクセスできないようにする
+セキュリティー方針機能です。</p>
+
+<p>ハイブリッドHTML5アプリの開発環境は普段ブラウザー（<strong>Firefox</strong> <strong>Firebug</strong>など）を利用し、
+試作品を検証します。もしコードが単一ページアプリ（single page applicaiton: SPA）である場合、
+直接ウェブサービスへ接続しに行き、ブラウザーのCORS方針機能が動作しHTTPメソッドの動作が
+阻害されます。実際SPAが独立アプリとしてビルド・パッケージされた場合、ブラウザーの外で動作する
+為CORSが問題にはなりません。しかし開発段階ではブラウザーを活用して施策することが最も効率的な
+ことから、対策が必要です。</p>
+
+<p>ブラウザーCORSの解決策としてIonic Frameworkの指令・コマンド・ライン・インストラクション(Command
+Line Instruction: CLI) <strong>IONIC SERVE</strong>を活用することで、簡易的にプロキシ・サーバーを
+立ち上げ、そのサーバーを利用して外部ウェブリソースへ接続できます。Ionic プロジェクトの
+ルートディレクトリーに<em>ionic.project</em>ファイルを用意し、プロキシ・サーバーURLを記載し、CLI
+を発行することで、プロキシ・サーバーが起動し、<em>ionic.project</em>ファイルから情報を取得、外部
+ウェブリソースへの接続を可能にするアクセスルートを確立します。vertexSDKコード内ではlocalhost:8100
+を外部ウェブリソースとして指定することで、プロキシ・サーバーを利用します。</p>
+
+<h2>
+<a id="基本特徴プロジェクト構造" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%B4%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E9%80%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本特徴：　プロジェクト構造</h2>
+
+<p>プロジェクトは、AngularJSのディレクトリー構造とIonic Frameworkを利用します。</p>
+
+<h3>
+<a id="root" class="anchor" href="#root" aria-hidden="true"><span class="octicon octicon-link"></span></a>Root</h3>
+
+<p>: #####<strong>/www</strong> : Parent directory
+    : ######<strong>/css</strong> : Custom Cascading Style Sheets
+    : #####<strong>/img</strong> : jpeg or png image resouces
+    : #####<strong>/js</strong>  : application logic, controllers, and services
+    : #####<strong>/lib</strong> : javascript framework and other tools
+    : #####<strong>/templates</strong> : HTML pages
+    : ######index.html</p>
+
+<h1>
+<a id="対象ユースケース" class="anchor" href="#%E5%AF%BE%E8%B1%A1%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>対象ユースケース</h1>
+
+<p>vertexSDKクライアントアプリケーションは下記の基本操作を行います：</p>
+
+<p>1)　クライアントアプリケーションのログオン
+2)　Vertexからデータを引き出す
+        a-過去、現在、進行中のイベント
+        b-イベントを選択し詳細を見る</p>
+
+<p>クライアントアプリケーションは自動的にVertexをポールし、イベント情報を取得します。イベントリスト
+はVertex上の情報と同期します。</p>
+
+<p>クライアントアプリケーションはアクティブのイベントを監視し、状態をディスプレイします。</p>
+
+<p>クライアントアプリケーションはイベントのオプトイン・オプトアウトできます。</p>
+
+<p>/img　の画像はここからです：  <a href="http://www.freeimages.com/">http://www.freeimages.com/</a></p>
+
+<h1>
+<a id="vertex-software-development-kit-for-client-single-page-applications" class="anchor" href="#vertex-software-development-kit-for-client-single-page-applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vertex Software Development Kit for Client Single Page Applications</h1>
+
+<p>(vertexSDK client app: pre-alpha  v.0.1.0 )
+(Vertex 2.3.x API <a href="http://apiforvertex.appspot.com/">http://apiforvertex.appspot.com/</a>)</p>
+
+<p>This document is a primer to facilitate development of hybrid HTML5 based mobile application to access Wireless Glue Networks, Inc.'s (WGN) <strong>Vertex v2.3.x</strong> software REST API.</p>
+
+<p>WGN's <strong>Vertex</strong> is a generic event notification software with specific functionality geared to enable energy management and electrical demand response (DR) OpenADR2.0b[^stackedit] signal handling; it is OpenADR 2.0b certified and works with corresponding OpenADR2.0b Virtual Top Nodes (VTN), whereby Vertex functions as the Virtual End Node (VEN).  If one desires to inherit a certified status, a commercial license with Wireless Glue Networks will be necessary for Vertex software.  Vertex is a proprietary software of WGN; however, this client SDK is open sourced to enable developers to create client applications to receive and utilize the DR information.</p>
+
+<h2>
+<a id="purpose" class="anchor" href="#purpose" aria-hidden="true"><span class="octicon octicon-link"></span></a>Purpose</h2>
+
+<p>vertexSDK is aimed at introducing the developer to access the API of Vertex 2.3.x.  As such, basic interaction is provided in javascript, HTML, and CSS files in a Single Page Application (<strong>SPA</strong>) structure.  This SDK is to serve as a primer and not meant as a complete client software, and developers should develop their own use cases and features based on the foundations provided by this SDK.  </p>
+
+<h2>
+<a id="developer-access" class="anchor" href="#developer-access" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developer Access</h2>
+
+<p><strong>Vertex</strong> has user levels and session log-ons.  Users belong to three possible classes:  Administrator, Operator, or Account.  While the Vertex API allows interaction with all three user levels, the SDK provides access information to Operator and Account level users only.  A sample Operator user is prepared and provided on the hosted sample Vertex server, so that client application developers may test and interact with a Vertex instance.  In order to obtain the credentials needed to interact with the Vertex API as an Operator or Account and relevant evaluation license, contact <a href="mailto:john@wirelessglue.com">john@wirelessglue.com</a>.</p>
+
+<h2>
+<a id="basic-feature--session-less-server-and-client-application-states" class="anchor" href="#basic-feature--session-less-server-and-client-application-states" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feature:  Session-less Server and Client Application States</h2>
+
+<p><strong>Vertex</strong> functionality is served through a RESTful API using standard HTTP methods, under Basic Authentication.  Once a developer is issued a username and password, those credentials can be used to access the API as a virtual user through this API.  Each API request is authorized with the Basic Authentication credentials in the HTTP header, and the transaction is complete with a HTTP Response.  <strong>Vertex</strong> therefore does not maintain any session status for each API user.</p>
+
+<p>In contrast, a client application interacts with a user; credentials and other information are inputted, maintained, and persisted; once the human user finishes with the client application, certain credentials and information may be deleted once the interaction is over.  Hence, a local client application session management is appropriate.  Therefore, the vertexSDK client models a usage where the client application maintains human user log-in status; this status is released once the client application is reset.  As long as the human user has logged on in a session, the logged session is maintained and the client application can interact freely with the permitted API level of Vertex.</p>
+
+<blockquote>
+<p>*<em>Note: *</em>
+<i></i>SSL connections are supported only on commercial hosting licensing of Vertex</p>
+</blockquote>
+
+<h1>
+<a id="basic-feature--angularjsionic-javascript-mvc-framework" class="anchor" href="#basic-feature--angularjsionic-javascript-mvc-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feature:  AngularJS/Ionic JAVASCRIPT MVC FRAMEWORK</h1>
+
+<p>The vertexSDK client application uses AngularJS as the Mode-View-Controller (MVC) framework to facilitate a simpler application development.  Furthermore, Ionic Framework is employed to simplify stylistic elements to give the app a "modern" look and feel.  Various editing and testing tools can be used; here, the assumption is to use <strong>Firefox</strong>  <strong>Firebug</strong> debugging tool along with <strong>Ionic Serve</strong> proxy server, and a suitable text editor such as <strong>Atom</strong> (<a href="https://atom.io/">https://atom.io/</a>).</p>
+
+<h2>
+<a id="cross-origin-resource-sharing-cors-1" class="anchor" href="#cross-origin-resource-sharing-cors-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross Origin Resource Sharing (CORS)</h2>
+
+<p>Developing an hybrid HTML5 application requires care to handle the Cross Origin Resource Sharing (CORS) policy mechanism embedded in modern browser applications such as Firefox and Chrome.  Typically browsers do not allow HTML pages to deep link with web resources other than of the immediate resource location that the server is providing.  This is in place to prevent malicious code to access local files or other resource locations, and thus create a security hazard.</p>
+
+<p>The development environment of HTML5 hybrid applications more often than not enlist a browser (such as <strong>Firefox Firebug</strong>) to prototype and render the code.  If that code is acting as a single page application (<strong>SPA</strong>), and independently accesses a web-based API, the CORS policy of the browser environment will kick-in, and prevent a typical HTTP method to function and retrieve data.  In actuality, an independently packaged SPA will not encounter such a problem, because it will operate outside of a browser environment.  However in the development phase, it is often efficient and useful for the developer to use browsers.</p>
+
+<p>To circumvent this problem, makers of the Ionic Framework provides a quick and easy proxy server, the invoked by the command line instruction (CLI) <strong>&gt;IONIC SERVE</strong> in the root directory of the ionic project.  To utilize proxy server, the <em>ionic.project</em> file.  A proxy server URL is defined with the file; once the CLI is issued, the proxy server will examine the contents of the <em>ionic.project</em> file and run a server to serve as the front to the external web resource.  Within the code itself, the URL used shall be the localhost:8100, the location of the proxy server.</p>
+
+<h2>
+<a id="basic-feature--project-structure" class="anchor" href="#basic-feature--project-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feature:  Project structure</h2>
+
+<p>The structure of the project follows AngularJS directory organization, and utilizes Ionic Framework resources.</p>
+
+<h3>
+<a id="root-1" class="anchor" href="#root-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Root</h3>
+
+<p>: #####<strong>/www</strong> : Parent directory
+    : ######<strong>/css</strong> : Custom Cascading Style Sheets
+    : #####<strong>/img</strong> : jpeg or png image resouces
+    : #####<strong>/js</strong>  : application logic, controllers, and services
+    : #####<strong>/lib</strong> : javascript framework and other tools
+    : #####<strong>/templates</strong> : HTML pages
+    : ######index.html</p>
+
+<h1>
+<a id="featured-use-case" class="anchor" href="#featured-use-case" aria-hidden="true"><span class="octicon octicon-link"></span></a>Featured Use Case</h1>
+
+<p>vertexSDK client application covers the following basic interaction:</p>
+
+<p>1) User log-on to the client application
+2) Pull data from Vertex
+    a- Pending, current, and past events
+    b- Select an event to read the details</p>
+
+<p>Client application automatically polls Vertex and pulls event information, synchronizing the event list with the event state of Vertex.</p>
+
+<p>Client application monitors the active event and displays a modal to indicate the status</p>
+
+<p>Client application can opt in or out of the event</p>
+
+<p>Images in /img from:  <a href="http://www.freeimages.com/">http://www.freeimages.com/</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Vertexsdk maintained by <a href="https://github.com/jlinglue">jlinglue</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-69308918-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
