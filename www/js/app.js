@@ -165,7 +165,6 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     })
 
 
-// view based routing is not working; URL changes but not the views / html; code not working is commented out
 
     .state('app.loggedIn.function', {
       abstract:'true',
@@ -192,6 +191,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
+    // view based routing on third level not working yet; 
 
     .state('app.loggedIn.function.single', {
       url: '/:id',
