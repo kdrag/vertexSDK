@@ -89,6 +89,22 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         }
       }
     })
+
+
+
+    .state('app.loggedOut.settings', {
+      url: '/settings',
+      views:{
+        'loggedOut-placeholder':{
+          templateUrl: 'templates/settings.html',
+          controller: 'settingsCtrl',
+          controllerAs: 'settings'
+        }
+      }
+    })
+
+
+
     .state('app.loggedIn.userInfo',{
       url: '/userInfo',
       cache: 'false',
@@ -119,7 +135,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     })
 
     .state('app.loggedIn.single', {
-      url: '/:id',
+      url: '/{id:[0-7]{0,1}}',
       cache: 'false',
       data:{
         requiredLogin: true
@@ -133,13 +149,29 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
-// view based routing is not working; URL changes but not the views / html; carrying over secondary view still
+    .state('app.loggedIn.8', {
+      url: '/8',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/functionSys.html',
+          controller: 'functionSysController'
+        }
+      }
+    })
+
+
+// view based routing is not working; URL changes but not the views / html; code not working is commented out
 
     .state('app.loggedIn.function', {
+      abstract:'true',
       url: '/function',
-      abstract: true,
-      views: {
-        'functions' :{
+     views: {
+        'function-placeholder':{
           templateUrl: 'templates/function.html',
           controller : 'functionController'
         }
@@ -156,7 +188,6 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         'function-placeholder':{
           controller: 'functionSysController',
           templateUrl: 'templates/functionSys.html',
-          controllerAs: 'functionSys'
         }
       }
     })
@@ -164,33 +195,17 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
 
     .state('app.loggedIn.function.single', {
       url: '/:id',
-      cache: 'false',
       data:{
         requiredLogin: true
-      }
-      ,
-      views:{
-        'function-placeholder':{
-          templateUrl: 'templates/functionTertiary.html',
-          controller: 'functionControllerTertiary'
-        }
-      }
+      }//,
+//      views:{
+//        'function-placeholder':{
+//          templateUrl: 'templates/functionTertiary.html',
+//          controller: 'functionControllerTertiary'
+//        }
+//      }
     })
 
-
-
-
-
-    .state('app.loggedOut.settings', {
-      url: '/settings',
-      views:{
-        'loggedOut-placeholder':{
-          templateUrl: 'templates/settings.html',
-          controller: 'settingsCtrl',
-          controllerAs: 'settings'
-        }
-      }
-    })
 
 
   $urlRouterProvider.otherwise('app/loggedOut/home');

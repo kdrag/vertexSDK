@@ -5,11 +5,12 @@
     <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
   </ion-nav-buttons>
 </ion-nav-bar>
+<ion-nav-view name="functionSys-placeholder"></ion-nav-view>
 <ion-content padding="true">
 
 
   <ion-list>
-    <ion-item align="left" ng-repeat="function_sysconfiglist in function_sysconfiglists" ng-click="selectConfigItem(function_sysconfiglist)" href="#/app/loggedIn/functions/{{function_syconfiglist.id}}">
+    <ion-item align="left" ng-repeat="function_sysconfiglist in function_sysconfiglists" ng-click="selectConfigItem(function_sysconfiglist)" href="#/app/loggedIn/function/{{function_sysconfiglist.id}}">
           {{function_sysconfiglist.title}}
     </ion-item>
   </ion-list>

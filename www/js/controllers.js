@@ -58,9 +58,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
-.controller('functionSysController',function ($scope, $ionicHistory){
+.controller('functionSysController',function ($scope, $ionicHistory, $state, $location){
 
-  alert('at functionSysController');
 
   $scope.function_sysconfiglists = [
     { title: 'Home', id: 1 },
@@ -73,10 +72,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Authentication', id: 8 }
   ];
 
-  //$scope.selectConfigItem=function(function_sysconfiglist){
-  //  alert(function_sysconfiglist.title + " " + function_sysconfiglist.id)
-  //}
 
+  $state.go('app.loggedIn.function.functionSys');
 
 })
 
@@ -107,15 +104,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       disableBack: true
     });
     $state.go('app.loggedOut.home')
-  }else{
-    if (valuelist[index].title=='System Configuration'){
-    $ionicViewService.nextViewOptions({
-      disableBack: true
-    });
-    //$state.go('app.loggedOut.settings')
-    $state.go('app.loggedIn.function.functionSys')
-    //$state.go('app.loggedIn.functionSys')
-   }}
+  }
+
 })
 
 .controller('functionControllerTertiary', function($state, $rootScope, $scope, $ionicHistory, $location, $ionicViewService){
