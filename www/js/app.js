@@ -22,7 +22,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
 
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $stateProvider
     .state('app', {
       url: "/app",
@@ -158,53 +158,64 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       ,
       views:{
         'loggedIn-placeholder':{
-          templateUrl: 'templates/functionSys.html',
-          controller: 'functionSysController'
+          //templateUrl: 'templates/functionSys8.html',
+          controller: 'functionSys8Controller'
         }
       }
     })
-
 
 
     .state('app.loggedIn.function', {
       abstract:'true',
       url: '/function',
+      cache: 'false',
      views: {
-        'function-placeholder':{
-          templateUrl: 'templates/function.html',
-          controller : 'functionController'
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/functionSys.html',
+          controller: 'functionSysController',
         }
       }
     })
 
-
     .state('app.loggedIn.function.functionSys',{
       url: "/functionSys",
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+    })
+
+    // home menu selection is excluded from regular expression, and deferred to $urlRouteProvider.
+
+    .state('app.loggedIn.function.single', {
+      url: '/{id:[2-7]{0,1}}',
+      cache: 'false',
       data:{
         requiredLogin: true
       },
       views:{
-        'function-placeholder':{
-          controller: 'functionSysController',
-          templateUrl: 'templates/functionSys.html',
+        'functionSys-placeholder':{
+          templateUrl: 'templates/functionTertiary.html',
+          controller: 'functionControllerTertiary'
         }
       }
     })
 
-    // view based routing on third level not working yet; 
-
-    .state('app.loggedIn.function.single', {
-      url: '/:id',
+    .state('app.loggedIn.function.8', {
+      url: '/8',
+      cache: 'false',
       data:{
         requiredLogin: true
-      }//,
-//      views:{
-//        'function-placeholder':{
-//          templateUrl: 'templates/functionTertiary.html',
-//          controller: 'functionControllerTertiary'
-//        }
-//      }
+      },
+      views:{
+        'functionSys-placeholder':{
+          controller: 'functionAuthController'
+          }
+        }
     })
+
+
+
 
 
 

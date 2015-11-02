@@ -40,6 +40,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('functionsController', function ($scope, $ionicHistory){
 
+  //alert('at functions controller');
 
   $scope.functionlists = [
     { title: 'Home', id: 1 },
@@ -58,8 +59,9 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
-.controller('functionSysController',function ($scope, $ionicHistory, $state, $location){
+.controller('functionSysController',function ($scope, $state, $location, $ionicViewService, $ionicHistory){
 
+  //alert ('at functionSys controller');
 
   $scope.function_sysconfiglists = [
     { title: 'Home', id: 1 },
@@ -70,10 +72,24 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Collector Configuration', id: 6 },
     { title: 'Email Configuration', id: 7 },
     { title: 'Authentication', id: 8 }
-  ];
+  ]
+
+  $scope.selectConfigItem=function(function_sysconfiglist){
+    //alert(function_sysconfiglist.title + " " + function_sysconfiglist.id);
+    var state='app.loggedIn.function.'+function_sysconfiglist.id
+    $state.go(state);
+    //alert('state='+state);
+    //alert('path='+'#/app/loggedIn/function/'+function_sysconfiglist.id);
+  }
+
+
+})
+
+.controller('functionSys8Controller',function ($scope, $state, $location, $ionicViewService, $ionicHistory){
 
 
   $state.go('app.loggedIn.function.functionSys');
+
 
 })
 
@@ -99,18 +115,14 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   //valuelist[index].title specifies the Function selected by the User
   document.getElementById('textInsert').innerHTML = 'Function is ' + valuelist[index].title;
   if (valuelist[index].title=='Home'){
-    //turn off the "back" arrow
-    $ionicViewService.nextViewOptions({
-      disableBack: true
-    });
+
     $state.go('app.loggedOut.home')
   }
-
 })
 
-.controller('functionControllerTertiary', function($state, $rootScope, $scope, $ionicHistory, $location, $ionicViewService){
+.controller('functionControllerTertiary', function($state, $scope, $ionicHistory, $location, $ionicViewService){
 
-  alert('at functionControllerTertiary');
+  //alert('at functionControllerTertiary');
 
 
   var valuelist_conf = [
@@ -128,19 +140,16 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   var pageConf= $location.url().slice(-1);
   var indexConf = parseInt(pageConf)-1;
   $scope.valueconf=pageConf;
-  //valuelist_conf[indexConf].title specifies the Function selected by the User
   document.getElementById('textConfInsert').innerHTML = 'Function is ' + valuelist_conf[indexConf].title;
 
-  if (valuelist_conf[indexConf].title=='Home'){
-    alert(valuelist_conf[indexConf].id+" "+valuelist_conf[indexConf].title);
-    //turn off the "back" arrow
-    $ionicViewService.nextViewOptions({
-      disableBack: true
-    });
-    $state.go('app.loggedOut.home');
-  }
 })
 
+
+.controller('functionAuthController',function ($scope, $state, $location, $ionicViewService, $ionicHistory){
+
+ alert('Authentication Selected');
+
+})
 
 
 .controller('refresh_control',function($scope,$interval, $localstorage){
@@ -152,7 +161,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 
 
-.controller("HomeController", ['$scope', '$state', '$ionicHistory', function($scope, $state, $ionicHistory){
+.controller("HomeController", ['$scope', '$state', '$ionicHistory', function($scope, $state, $ionicHistory, $ionicViewService){
 
 
 }])
