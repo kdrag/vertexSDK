@@ -54,6 +54,13 @@ vertexSDKはクライアントアプリケーションソフト開発を簡易�
 プロキシ・サーバーに**Ionic Serve**を想定します。エディターには、**Atom**などが便利です
 (https://atom.io/)。
 
+３層メニュー構造
+--------------------------
+クライアントアプリのユーザー基本は左引き出しメニューの項目を選択します。*Function*を選択することで２層目のメニュ、Vertexの基本機能項目がリスト
+形式に表示されます。*System Configuration*　を選択することで、３層目のVertex設定メニュー項目が表示されます。
+
+メニュー構造は状態定義ファイル js/app.jsに記述されています。
+
 Cross Origin Resource Sharing (CORS)
 -----------------------------------
 (参考：http://dev.classmethod.jp/etc/about-cors/)
@@ -147,6 +154,12 @@ In contrast, a client application interacts with a user; credentials and other i
 Basic Feature:  AngularJS/Ionic JAVASCRIPT MVC FRAMEWORK
 =======================================
 The vertexSDK client application uses AngularJS as the Mode-View-Controller (MVC) framework to facilitate a simpler application development.  Furthermore, Ionic Framework is employed to simplify stylistic elements to give the app a "modern" look and feel.  Various editing and testing tools can be used; here, the assumption is to use **Firefox**  **Firebug** debugging tool along with **Ionic Serve** proxy server, and a suitable text editor such as **Atom** (https://atom.io/).
+
+Three level menu structure
+--------------------------
+Basic user functions are represented in the left-side slide-out menu.  The *Functions* menu display available main functions of Vertex.  Furthermore, *System Configuration* displays further menu items to configure Vertex itself.
+
+The menu structure is driven by the state definitions in js/app.js.
 
 Cross Origin Resource Sharing (CORS)
 ---------------------------------------------
