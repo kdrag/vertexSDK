@@ -18,7 +18,7 @@
 
           <label class="item item-input" align="left">
             <span class="input-label">Vertex Address</span>
-            <input type="text" name="vtxAddress" placeholder="http://vtx00.wgn.jp" ng-model="settingValues.vtxAddress" ng-required="true" ng-minlength="1" ng-maxlength="30"></input>
+            <input type="text" name="vtxAddress" placeholder="vtx00.wgn.jp" ng-model="settingValues.vtxAddress" ng-required="true" ng-minlength="1" ng-maxlength="30"></input>
           </label>
 
           <label class="item item-input" align="left">
@@ -32,9 +32,9 @@
           </label>
 
           <button class="button button-balanced" align="left">Submit</button>
-
-
-
+          <span>vtxAddress: {{settingValues.vtxAddress}}</span><br></br>
+          <span>programName: {{settingValues.programName}}</span><br></br>
+          <span>generic2: {{settingValues.generic2}}</span><br></br>
         </div>
 
 

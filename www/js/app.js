@@ -135,7 +135,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
     })
 
     .state('app.loggedIn.single', {
-      url: '/{id:[0-7]{0,1}}',
+      url: '/{id:[3-7]{0,1}}',
       cache: 'false',
       data:{
         requiredLogin: true
@@ -149,6 +149,22 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
+    .state('app.loggedIn.2', {
+      url: '/2',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/eventsList.html',
+          controller: 'getEvents'
+        }
+      }
+    })
+
+
     .state('app.loggedIn.8', {
       url: '/8',
       cache: 'false',
@@ -158,7 +174,6 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       ,
       views:{
         'loggedIn-placeholder':{
-          //templateUrl: 'templates/functionSys8.html',
           controller: 'functionSys8Controller'
         }
       }

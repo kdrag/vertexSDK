@@ -176,9 +176,16 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 .controller("settingsCtrl", ['$scope', '$state', '$ionicHistory', '$localstorage',function($scope, $state, $ionicHistory, $localstorage) {
 
   $scope.settingValues=[];
+  $scope.settingValues={
+    'vtxAddress' : null,
+    'programName' : null,
+    'generic2' : null
+  };
   $scope.settingsSubmit = function(settingValues){
-  }
-
+    $localstorage.set('vtxAddress', $scope.settingValues.vtxAddress);
+    $localstorage.set('programName', $scope.settingValues.programName);
+    $localstorage.set('generic2', $scope.settingValues.generic2);
+  };
 }])
 
 .controller("signInController",['$rootScope', '$scope', '$http', '$state', '$localstorage', '$ionicHistory', function($rootScope, $scope, $http, $state, $localstorage, $ionicHistory) {
@@ -253,4 +260,31 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     $scope.event = Event.get();
     $ionicLoading.hide()
 
-});
+})
+
+/******************************************/
+/*  level 1 functionality menu controllers
+/*
+/*
+*/
+
+.controller('getEvents',function ($scope, $resource, serviceEvent, $localstorage){
+
+  alert('at getEvents controller: ' + $localstorage.vtxAddress);
+  $scope.eventList=[];
+  $scope.eventList=serviceEvent.query();
+  alert('List of Events: ' + $scope.eventList);
+
+})
+
+
+
+/******************************************/
+/*  level 2 functionality menu controllers
+/*
+/*
+*/
+
+
+//end of controllers
+;

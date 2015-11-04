@@ -1,7 +1,47 @@
 angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
-.constant('ENDPOINT_URI', 'http://localhost:8100/event')
+//.constant('ENDPOINT_URI', 'http://localhost:8100/event')
+.constant('ENDPOINT_URI', 'http://localhost:8100/')
 
+//use of ngResource:
+//{ 'get':    {method:'GET'},
+//  'save':   {method:'POST'},
+//  'query':  {method:'GET', isArray:true},
+//  'remove': {method:'DELETE'},
+//  'delete': {method:'DELETE'} };
+//event API
+//usage:POST   $scope.eventlist=serviceEvent.save()
+//usage:GET    $scope.eventlist=serviceEvent.get()
+//usage:PUT
+//usage:DELETE $scope.eventlist=serviceEvent.delete
+.factory('serviceEvent',function($resource,$http,$localstorage){
+  $http.defaults.headers.common.Authorization = $localstorage.get('basic_auth_header');
+  return $resource('http://'+$localstorage.vtxAddress+'/'+'event');
+})
+
+.factory('serviceAccount',function(){
+  return $resource(ENDPOINT_URI+'customer');
+})
+
+.factory('serviceUser',function(){
+  return $resource(ENDPOINT_URI+'user');
+})
+
+.factory('serviceProgram',function(){
+  return $resource(ENDPOINT_URI+'program');
+})
+
+.factory('serviceMetadata',function(){
+  return $resource(ENDPOINT_URI+'dataset');
+})
+
+.factory('serviceData',function(){
+  return $resource(ENDPOINT_URI+'data');
+})
+
+.factory('serviceAuthentication',function(){
+  return $resource(ENDPOINT_URI+'authentication');
+})
 
 .factory('GetUserService', function($http, ENDPOINT_URI, TESTAUTH) {
        console.log('at GetUserService');
