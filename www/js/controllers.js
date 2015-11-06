@@ -173,7 +173,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
-.controller("settingsCtrl", ['$scope', '$state', '$ionicHistory', '$localstorage',function($scope, $state, $ionicHistory, $localstorage) {
+.controller("settingsCtrl", ['$scope', '$state', '$ionicHistory', '$localstorage','valueService', function($scope, $state, $ionicHistory, $localstorage, valueService) {
 
   $scope.settingValues=[];
   $scope.settingValues={
@@ -181,11 +181,21 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     'programName' : null,
     'generic2' : null
   };
-  $scope.settingsSubmit = function(settingValues){
+  settingsSubmit: $scope.settingsSubmit = function(settingValues){
     $localstorage.set('vtxAddress', $scope.settingValues.vtxAddress);
     $localstorage.set('programName', $scope.settingValues.programName);
     $localstorage.set('generic2', $scope.settingValues.generic2);
   };
+  watch_vtxAddress: $scope.$watch('settingValues.vtxAddress', function() {
+   valueService.updatevtxAddress($scope.settingValues.vtxAddress);
+  });
+  watch_programName: $scope.$watch('settingValues.programName', function(){
+    valueService.updateprogramName($scope.settingValues.programName);
+  });
+  watch_generic2: $scope.$watch('settingValues.generic2', function(){
+    valueService.updategeneric2($scope.settingValues.generic2);
+  });
+
 }])
 
 .controller("signInController",['$rootScope', '$scope', '$http', '$state', '$localstorage', '$ionicHistory', function($rootScope, $scope, $http, $state, $localstorage, $ionicHistory) {
@@ -269,8 +279,23 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 */
 
 .controller('getEvents',function ($scope, $resource, serviceEvent, $localstorage){
+/*
+$scope.settingValues=[];
+$scope.settingValues={
+  'vtxAddress' : null,
+  'programName' : null,
+  'generic2' : null
+};
+*/
 
-  alert('at getEvents controller: ' + $localstorage.vtxAddress);
+  alert('getEvents vtxAddress: ' + $scope.settingValues.vtxAddress);
+  $scope.$on('valuesUpdated', function() {
+      $scope.settingValues.vtxAddress = valueService.vtxAddress;
+      $scope.settingValues.programName = valueService.programName;
+      $scope.settingValues.generic2 = valueService.generic2;
+  });
+
+  alert('at getEvents controller: ' + $scope.settingValues.vtxAddress);
   $scope.eventList=[];
   $scope.eventList=serviceEvent.query();
   alert('List of Events: ' + $scope.eventList);

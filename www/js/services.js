@@ -1,5 +1,8 @@
 angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
+
+
+
 //.constant('ENDPOINT_URI', 'http://localhost:8100/event')
 .constant('ENDPOINT_URI', 'http://localhost:8100/')
 
@@ -14,9 +17,12 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //usage:GET    $scope.eventlist=serviceEvent.get()
 //usage:PUT
 //usage:DELETE $scope.eventlist=serviceEvent.delete
-.factory('serviceEvent',function($resource,$http,$localstorage){
+.factory('serviceEvent',function(valueService, $resource,$http,$localstorage){
   $http.defaults.headers.common.Authorization = $localstorage.get('basic_auth_header');
-  return $resource('http://'+$localstorage.vtxAddress+'/'+'event');
+  $scope.$on('valuesUpdated', function() {
+          $scope.vtxAddress = valueService.vtxAddress;
+      });
+  return $resource('http://'+ $scope.vtxAddress+'/'+'event');
 })
 
 .factory('serviceAccount',function(){
@@ -41,6 +47,34 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
 .factory('serviceAuthentication',function(){
   return $resource(ENDPOINT_URI+'authentication');
+})
+
+.factory('valueService', function($rootScope){
+    var service = {};
+    service.vtxAddress = 0;
+    service.programName = 0;
+    service.generic2 = 0;
+
+    service.updatevtxAddress = function(value){
+        this.vtxAddress = value;
+        $rootScope.$broadcast("valuesUpdated");
+    }
+
+    service.updateprogramName = function(value){
+        this.programName = value;
+        $rootScope.$broadcast("valuesUpdated");
+    }
+
+    service.updategeneric2 = function(value){
+        this.generic2 = value;
+        $rootScope.$broadcast("valuesUpdated");
+    }
+
+    service.vtxAddress = function (){
+
+    }
+
+    return service;
 })
 
 .factory('GetUserService', function($http, ENDPOINT_URI, TESTAUTH) {

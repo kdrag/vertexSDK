@@ -37,7 +37,8 @@
             <input type="password" name="confirmCode" placeholder="********" ng-model="data.confirmCode" ng-required="true" ng-minlength="4" ng-maxlength="30"></input>
           </label>
 
-          <button class="button button-balanced" align="left">Submit</button> <span>Submitted {{data.submissions}} times.</span>
+          <button class="button button-balanced" align="left">Submit</button>
+          <span>Submitted: {{data.submissions}} times.</span>
           <span> user: {{data.email}}</span>
           <span> logged in: {{data.stateValue}}</span>
 
