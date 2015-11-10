@@ -173,28 +173,21 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
-.controller("settingsCtrl", ['$scope', '$state', '$ionicHistory', '$localstorage','valueService', function($scope, $state, $ionicHistory, $localstorage, valueService) {
+.controller("settingsCtrl", ['$scope', '$ionicHistory', '$localstorage', function($scope, $ionicHistory, $localstorage) {
 
   $scope.settingValues=[];
   $scope.settingValues={
-    'vtxAddress' : null,
-    'programName' : null,
-    'generic2' : null
+    'vtxAddress' : 'null',
+    'programName' : 'null',
+    'generic2' : 'null'
   };
   settingsSubmit: $scope.settingsSubmit = function(settingValues){
     $localstorage.set('vtxAddress', $scope.settingValues.vtxAddress);
     $localstorage.set('programName', $scope.settingValues.programName);
     $localstorage.set('generic2', $scope.settingValues.generic2);
+
+    return settingValues;
   };
-  watch_vtxAddress: $scope.$watch('settingValues.vtxAddress', function() {
-   valueService.updatevtxAddress($scope.settingValues.vtxAddress);
-  });
-  watch_programName: $scope.$watch('settingValues.programName', function(){
-    valueService.updateprogramName($scope.settingValues.programName);
-  });
-  watch_generic2: $scope.$watch('settingValues.generic2', function(){
-    valueService.updategeneric2($scope.settingValues.generic2);
-  });
 
 }])
 
