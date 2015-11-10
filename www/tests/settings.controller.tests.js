@@ -2,10 +2,12 @@ describe('vertexSDK', function(){
 
 beforeEach(module('vertexSDK'));
 
+
 describe('settingsCtrl', function() {
   var localstorage;
   var scope;
   var controller;
+
 
 
   beforeEach(inject(function($rootScope, $controller, $localstorage) {
@@ -26,6 +28,7 @@ describe('settingsCtrl', function() {
       'programName' : 'program1',
       'generic2' : 'generic'
     };
+
 
 
       var result = scope.settingsSubmit(param);
