@@ -1,14 +1,14 @@
 describe('valueService tests', function(){
+
+  console.log('valueService factory test');
+
   var valueService;
-  var root;
-  var on;
 
   beforeEach(function(){
     module('vertexSDK');
 
     inject(function($rootScope, _valueService_){
       valueService= _valueService_;
-      scope=$rootScope;
     });
   });
 
@@ -24,6 +24,10 @@ describe('valueService tests', function(){
   it('should update generic2', function(){
     valueService.updategeneric2('myGeneric');
     expect(valueService.generic2).toBe('myGeneric');
+  });
+  it('should update basicAuthHeader', function(){
+    valueService.updatebasicAuthHeader('myAuth');
+    expect(valueService.basicAuthHeader).toBe('myAuth');
   });
 
 

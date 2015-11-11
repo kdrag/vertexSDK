@@ -192,7 +192,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
-.controller("signInController",['$rootScope', '$scope', '$http', '$state', '$localstorage', '$ionicHistory', function($rootScope, $scope, $http, $state, $localstorage, $ionicHistory) {
+.controller("signInController",['$rootScope', '$scope', '$http', '$state', '$localstorage', '$ionicHistory', 'valueService', function($rootScope, $scope, $http, $state, $localstorage, $ionicHistory, valueService) {
 
  // https://scotch.io/license
  // From https://scotch.io/quick-tips/how-to-encode-and-decode-strings-with-base64-in-javascript
@@ -233,6 +233,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       $scope.data.stateValue=$localstorage.get('loggedInState');
     }
 
+    valueService.updatebasicAuthHeader('Basic '+ header64);
 };
 
 }])
@@ -272,27 +273,24 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 /*
 */
 
-.controller('getEvents',function ($scope, $resource, serviceEvent, valueService, $localstorage){
-/*
-$scope.settingValues=[];
-$scope.settingValues={
-  'vtxAddress' : null,
-  'programName' : null,
-  'generic2' : null
-};
-*/
+.controller('getEvents',function ($scope, serviceEvent, valueService){
 
-  alert('getEvents vtxAddress: ' + $scope.settingValues.vtxAddress);
-  $scope.$on('valuesUpdated', function() {
-      $scope.settingValues.vtxAddress = valueService.vtxAddress;
-      $scope.settingValues.programName = valueService.programName;
-      $scope.settingValues.generic2 = valueService.generic2;
-  });
-
-  alert('at getEvents controller: ' + $scope.settingValues.vtxAddress);
   $scope.eventList=[];
-  $scope.eventList=serviceEvent.query();
-  alert('List of Events: ' + $scope.eventList);
+  $scope.param=[];
+  $scope.param = {
+    'header': null,
+    'vtxAddress': null
+  };
+
+  getList: $scope.getList=function(param) {
+      //1- get basicAuthEhader, the header from valueService
+      //2- get vtxAddress, the Vertex host address from valueService
+      //3- get resource handle from serviceEvent
+      console.log(param.header, param.vtxAddress);
+      var resource = serviceEvent.getEvent(param);
+      $scope.eventList=resource.query();
+      console.log('@getEvents List of Events- ' + $scope.eventList);
+  };
 
 })
 

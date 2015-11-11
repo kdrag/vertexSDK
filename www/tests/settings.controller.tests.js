@@ -1,21 +1,23 @@
 describe('vertexSDK', function(){
 
-beforeEach(module('vertexSDK'));
+  console.log('settings controller test');
 
 
-describe('settingsCtrl', function() {
-  var localstorage;
-  var scope;
-  var controller;
+  beforeEach(module('vertexSDK'));
+
+
+  describe('settingsCtrl', function() {
+    var localstorage;
+    var scope;
+    var controller;
 
 
 
-  beforeEach(inject(function($rootScope, $controller, $localstorage) {
+  beforeEach(inject(function($rootScope, $controller) {
 
     scope= $rootScope.$new();
-    localstorage= $localstorage;
 
-    controller = $controller('settingsCtrl', {$scope: scope, $localstorage: localstorage});
+    controller = $controller('settingsCtrl', {$scope: scope});
 
 
 
