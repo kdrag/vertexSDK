@@ -22,18 +22,13 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
   var header = null;
   var vtxAddress = null;
-
-
-  return{
-    getEvent: function(resourceData){
-      $http.defaults.headers.common.Authorization = resourceData.header;
-      vtxAddress=resourceData.vtxAddress;
-      header= resourceData.header;
+  var resourceData= [];
+      $http.defaults.headers.common.Authorization = valueService.basicAuthHeader;
+      vtxAddress=valueService.vtxAddress;
+      header= valueService.basicAuthHeader;
       var res = 'http://'+ vtxAddress+'/'+'event'
       console.log('@serviceEvent-' + vtxAddress, header, res);
       return $resource(res);
-    }
-  }
 })
 
 .factory('serviceAccount',function(){

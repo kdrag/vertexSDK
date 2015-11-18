@@ -1,3 +1,8 @@
+
+
+
+
+/*
 describe('vertexSDK', function(){
 
   console.log('serviceEvent factory test');
@@ -30,3 +35,4 @@ describe('vertexSDK', function(){
     });
   });
 });
+*/

@@ -277,20 +277,25 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
   $scope.eventList=[];
   $scope.param=[];
+  $scope.resData=[];
   $scope.param = {
     'header': null,
     'vtxAddress': null
   };
 
-  getList: $scope.getList=function(param) {
       //1- get basicAuthEhader, the header from valueService
       //2- get vtxAddress, the Vertex host address from valueService
       //3- get resource handle from serviceEvent
-      console.log(param.header, param.vtxAddress);
-      var resource = serviceEvent.getEvent(param);
-      $scope.eventList=resource.query();
-      console.log('@getEvents List of Events- ' + $scope.eventList);
-  };
+      $scope.param.header=valueService.basicAuthHeader;
+      $scope.param.vtxAddress=valueService.vtxAddress;
+      console.log('scope param: ' + $scope.param.header, $scope.param.vtxAddress);
+      $scope.resData={'basicAuthHeader': $scope.param.header, 'vtxAddress': $scope.param.vtxAddress}
+      var retRes= serviceEvent.query()
+        .$promise
+        .then(function(response){
+          $scope.serviceResponse = response;
+        });
+      return retRes;
 
 })
 
