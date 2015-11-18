@@ -6,7 +6,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //.constant('ENDPOINT_URI', 'http://localhost:8100/event')
 .constant('ENDPOINT_URI', 'http://localhost:8100/')
 
-//use of ngResource:
+//use of ngResource- default HTTP methods:
 //{ 'get':    {method:'GET'},
 //  'save':   {method:'POST'},
 //  'query':  {method:'GET', isArray:true},
@@ -22,13 +22,24 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
   var header = null;
   var vtxAddress = null;
-  var resourceData= [];
+  var res = null;
+  var eventList = null;
+  return {
+    getEventList: function(){
       $http.defaults.headers.common.Authorization = valueService.basicAuthHeader;
       vtxAddress=valueService.vtxAddress;
       header= valueService.basicAuthHeader;
-      var res = 'http://'+ vtxAddress+'/'+'event'
+      res = 'http://'+ vtxAddress+'/'+'event'
       console.log('@serviceEvent-' + vtxAddress, header, res);
-      return $resource(res);
+      eventList= $resource(res).query()
+        .$promise
+        .then(function(response){
+          $scope.serviceResponse = response;
+        });
+      return eventList;
+    }
+  };
+
 })
 
 .factory('serviceAccount',function(){
