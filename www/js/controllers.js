@@ -275,28 +275,177 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('getEvents',function ($scope, serviceEvent, valueService){
 
-  $scope.eventList=[];
-  $scope.param=[];
-  $scope.resData=[];
-  $scope.param = {
-    'header': null,
-    'vtxAddress': null
-  };
+  var retRes;
+  var mockEvent=[{
+                 "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
+                 "eventId": "Test00",
+                 "dtStart": "2014-12-16T16:00:00.0000-0800",
+                 "marketContext": "http://MarketContext1",
+                 "duration": "PT60M",
+                 "signals": [
+                     {
+                         "type": "LEVEL",
+                         "intervals": [
+                             {
+                                 "duration": "PT60M",
+                                 "value": "2"
+                             }
+                         ],
+                         "id": "SIG_01",
+                         "name": "SIMPLE",
+                         "curValue": "0"
+                     }
+                 ],
+                 "cancelled": false,
+                 "testEvent": false,
+                 "responseRequired": "NEVER",
+                 "target": {
+                     "resourceIDs": [],
+                     "venIDs": []
+                 },
+                 "participationStatusTs": 1418774090226,
+                 "modNumber": 0,
+                 "vertex": "7601363e-6cb6-429b-93a4-b3072b217a0c",
+                 "endTs": 1418778000000,
+                 "startTs": 1418774400000,
+                 "drProgram": "5e9bed61-04bf-4b7f-9f26-373bece7f3d6",
+                 "rampUpStartTs": 1418774400000,
+                 "recoveryEndTs": 1418778000000,
+                 "accountParticipationKw": "0",
+                 "participationStatus": "optIn",
+                 "createdTs": 1418774090216,
+                 "_cas": 7
+             },
+             {
+                 "id": "9054ba8f-02dd-402a-84ea-198bd8272dbe",
+                 "eventId": "Test01",
+                 "dtStart": "2014-12-16T20:20:00.0000-0800",
+                 "marketContext": "http://MarketContext1",
+                 "duration": "PT60M",
+                 "signals": [
+                     {
+                         "type": "LEVEL",
+                         "intervals": [
+                             {
+                                 "duration": "PT60M",
+                                 "value": "2"
+                             }
+                         ],
+                         "id": "SIG_01",
+                         "name": "SIMPLE",
+                         "curValue": "0"
+                     }
+                 ],
+                 "cancelled": false,
+                 "testEvent": false,
+                 "responseRequired": "NEVER",
+                 "target": {
+                     "resourceIDs": [],
+                     "venIDs": []
+                 },
+                 "participationStatusTs": 1418789978904,
+                 "modNumber": 0,
+                 "vertex": "7601363e-6cb6-429b-93a4-b3072b217a0c",
+                 "endTs": 1418793600000,
+                 "startTs": 1418790000000,
+                 "drProgram": "5e9bed61-04bf-4b7f-9f26-373bece7f3d6",
+                 "rampUpStartTs": 1418790000000,
+                 "recoveryEndTs": 1418793600000,
+                 "accountParticipationKw": "0",
+                 "participationStatus": "optIn",
+                 "createdTs": 1418789978904,
+                 "_cas": 7
+             },
+             {
+                 "id": "b479d53d-957e-4885-8aa7-01a2946fc3e8",
+                 "eventId": "Test02",
+                 "dtStart": "2014-12-16T23:45:00.0000-0800",
+                 "marketContext": "http://MarketContext1",
+                 "duration": "PT30M",
+                 "signals": [
+                     {
+                         "type": "LEVEL",
+                         "intervals": [
+                             {
+                                 "duration": "PT30M",
+                                 "value": "2"
+                             }
+                         ],
+                         "id": "SIG_01",
+                         "name": "SIMPLE",
+                         "curValue": "0"
+                     }
+                 ],
+                 "cancelled": false,
+                 "testEvent": false,
+                 "responseRequired": "NEVER",
+                 "target": {
+                     "resourceIDs": [],
+                     "venIDs": []
+                 },
+                 "participationStatusTs": 1418802144615,
+                 "modNumber": 0,
+                 "vertex": "7601363e-6cb6-429b-93a4-b3072b217a0c",
+                 "endTs": 1418804100000,
+                 "startTs": 1418802300000,
+                 "drProgram": "5e9bed61-04bf-4b7f-9f26-373bece7f3d6",
+                 "rampUpStartTs": 1418802300000,
+                 "recoveryEndTs": 1418804100000,
+                 "accountParticipationKw": "0",
+                 "participationStatus": "optIn",
+                 "createdTs": 1418802144614,
+                 "_cas": 7
+             },
+             {
+                 "id": "3d653af2-7a08-416f-85cb-fb59002415eb",
+                 "eventId": "Test03",
+                 "dtStart": "2014-12-20T02:00:00.0000+0900",
+                 "marketContext": "http://MarketContext1",
+                 "duration": "PT30M",
+                 "signals": [
+                     {
+                         "type": "LEVEL",
+                         "intervals": [
+                             {
+                                 "duration": "PT30M",
+                                 "value": "2"
+                             }
+                         ],
+                         "id": "SIG_01",
+                         "name": "SIMPLE",
+                         "curValue": "0"
+                     }
+                 ],
+                 "cancelled": false,
+                 "testEvent": false,
+                 "responseRequired": "NEVER",
+                 "target": {
+                     "resourceIDs": [],
+                     "venIDs": []
+                 },
+                 "participationStatusTs": 1419007554042,
+                 "modNumber": 0,
+                 "vertex": "7601363e-6cb6-429b-93a4-b3072b217a0c",
+                 "endTs": 1419010200000,
+                 "startTs": 1419008400000,
+                 "drProgram": "5e9bed61-04bf-4b7f-9f26-373bece7f3d6",
+                 "rampUpStartTs": 1419008400000,
+                 "recoveryEndTs": 1419010200000,
+                 "accountParticipationKw": "0",
+                 "participationStatus": "optIn",
+                 "createdTs": 1419007554041,
+                 "_cas": 7
+        }];
 
-      //1- get basicAuthEhader, the header from valueService
+      //1- get basicAuthHeader, the header from valueService
       //2- get vtxAddress, the Vertex host address from valueService
       //3- get resource handle from serviceEvent
-      $scope.param.header=valueService.basicAuthHeader;
-      $scope.param.vtxAddress=valueService.vtxAddress;
-      console.log('scope param: ' + $scope.param.header, $scope.param.vtxAddress);
-      $scope.resData={'basicAuthHeader': $scope.param.header, 'vtxAddress': $scope.param.vtxAddress}
-      var retRes= serviceEvent.query()
-        .$promise
-        .then(function(response){
-          $scope.serviceResponse = response;
-        });
-      return retRes;
-
+  valueService.keyValue = 'event';
+  return retRes= serviceEvent.query()
+      .$promise
+      .then(function(response){
+        $scope.serviceResponse = response;
+      });
 })
 
 

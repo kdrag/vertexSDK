@@ -1,14 +1,14 @@
 
-describe('serviceEvent', function(){
+describe('serviceRest', function(){
 
-  console.log('serviceEvent factory test');
+  console.log('serviceRest factory test');
 
   var rootScope;
   var eventList;
   var valueService;
-  var mockserviceEvent;
+  var mockserviceRest;
   var scope;
-  var serviceEvent;
+  var serviceRest;
   var queryDeferred;
   var q;
   var resource;
@@ -201,23 +201,23 @@ describe('serviceEvent', function(){
       $provide.value('valueService', mockParam);
     });
 
-    mockserviceEvent = {
+    mockserviceRest = {
       query: function(){
-        console.log('mockserviceEvent called');
+        console.log('mockserviceRest called');
         queryDeferred = q.defer();
           return {$promise: queryDeferred.promise};
       }
     };
 
     module(function($provide){
-      $provide.value('serviceEvent', mockserviceEvent);
+      $provide.value('serviceRest', mockserviceRest);
     });
 
-    spyOn(mockserviceEvent, 'query').and.callThrough();
+    spyOn(mockserviceRest, 'query').and.callThrough();
 
-    inject(function($rootScope, $q, $resource, _serviceEvent_, _valueService_) {
+    inject(function($rootScope, $q, $resource, _serviceRest_, _valueService_) {
       valueService=_valueService_;
-      serviceEvent=_serviceEvent_;
+      serviceRest=_serviceRest_;
       resource=$resource;
       rootScope=$rootScope;
       q=$q;
@@ -226,9 +226,8 @@ describe('serviceEvent', function(){
   });
 
   beforeEach(function(){
-    eventList=serviceEvent.query();
-    console.log('serviceEvent.query(): ' + eventList);
-    console.log('keyValue: ' + valueService.keyValue);
+    eventList=serviceRest.query();
+    console.log('serviceRest.query(): ' + eventList);
 
     queryDeferred.resolve(mockEvent);
     scope.$apply();
@@ -238,11 +237,17 @@ describe('serviceEvent', function(){
 
   it('should call query', function() {
 
-    expect(mockserviceEvent.query).toHaveBeenCalled();
+    expect(mockserviceRest.query).toHaveBeenCalled();
   });
 
-  
-  it('should return a response Event', function() {
+  it('should get response', function(){
+    expect(scope.serviceResponse).toEqual(mockEvent);
+    // problem here is that the expection 'eventList' is a promise and compared
+    // to mockEvent, an array
+
+  });
+
+  it('should return a response', function() {
 
 
   });

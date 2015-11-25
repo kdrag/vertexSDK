@@ -18,27 +18,40 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //usage:PUT
 //usage:DELETE $scope.eventlist=serviceEvent.delete
 
-.factory('serviceEvent',function(valueService,$resource,$http){
-
+.factory('serviceRest', function(valueServie,$resource,$http){
   var header = null;
   var vtxAddress = null;
   var res = null;
-  var eventList = null;
-  return {
-    getEventList: function(){
-      $http.defaults.headers.common.Authorization = valueService.basicAuthHeader;
-      vtxAddress=valueService.vtxAddress;
-      header= valueService.basicAuthHeader;
-      res = 'http://'+ vtxAddress+'/'+'event'
-      console.log('@serviceEvent-' + vtxAddress, header, res);
-      eventList= $resource(res).query()
+  var key = null;
+
+  $http.defaults.headers.common.Authorization = valueService.basicAuthHeader;
+  vtxAddress=valueService.vtxAddress;
+  header= valueService.basicAuthHeader;
+  key = valueService.keyValue;
+  res = 'http://'+ vtxAddress+'/'+key;
+  console.log('@serviceEvent-' + vtxAddress, header, key, res);
+
+  GET: return $resource(res).query()
         .$promise
         .then(function(response){
           $scope.serviceResponse = response;
-        });
-      return eventList;
-    }
-  };
+    });
+
+  DELETE: return $resource(res).remove()
+        .$promise
+        .then(function(response){
+          $scope.serviceResponse = response;
+    });
+
+  POST: return $resource(res).save()
+        .$promise
+        .then(function(response){
+          $scope.serviceResponse = response;
+    });
+})
+
+.factory('serviceEvent',function(valueService){
+  query: return serviceRest.GET;
 
 })
 
@@ -72,6 +85,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
     service.programName = null;
     service.generic2 = null;
     service.basicAuthHeader = null;
+    service.keyValue = null;
 
     service.updatevtxAddress = function(value){
         this.vtxAddress = value;
@@ -93,6 +107,10 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
         $rootScope.$broadcast("valuesUpdated");
     }
 
+    service.updatekeyValue = function(value){
+        this.keyValue = value;
+        $rootScope.$broadcast("valuesUpdated");
+    }
 
     return service;
 })

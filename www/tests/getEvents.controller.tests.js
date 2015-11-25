@@ -1,8 +1,8 @@
+
 describe('getEvents', function () {
 
   console.log('getEvents controller test');
 
-  var valueService;
   var serviceEvent;
   var scope;
   var rootScope;
@@ -10,6 +10,8 @@ describe('getEvents', function () {
   var mockserviceEvent;
   var mockvalueService=[];
   var queryDeferred;
+  var controller;
+  var retVal;
   var mockEvent=[{
                  "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
                  "eventId": "Test00",
@@ -185,33 +187,33 @@ describe('getEvents', function () {
     $urlRouterProvider.deferIntercept();
   }));
 
-  beforeEach(inject(function( $rootScope, $q, _valueService_, _serviceEvent_){
-    valueService= _valueService_;
-    serviceEvent= _serviceEvent_;
-    q=$q;
-    rootScope=$rootScope;
-  }));
-
   describe('getEvent serviceEvent.query', function(){
 
-    beforeEach(inject(function($controller){
-      scope=rootScope.$new();
+    beforeEach(function(){
+
       mockserviceEvent = {
         query: function(){
           queryDeferred = q.defer();
-            return {$promise: queryDeferred.promise};
+          return {$promise: queryDeferred.promise};
         }
       };
 
-      mockvalueService={
-        'basicAuthHeader': 'myHeader',
-        'vtxAddress': 'myAddress'
-      };
+
+      module(function($provide){
+        $provide.value('serviceEvent', mockserviceEvent);
+      });
+
 
       spyOn(mockserviceEvent, 'query').and.callThrough();
 
-      $controller('getEvents', {'$scope': scope, 'serviceEvent': mockserviceEvent, 'valueService': mockvalueService});
-    }));
+      inject(function($controller, $rootScope, $q, _serviceEvent_){
+        serviceEvent= _serviceEvent_;
+        q=$q;
+        rootScope=$rootScope;
+        scope=rootScope.$new();
+        controller=$controller('getEvents', {'$scope': scope, 'serviceEvent': mockserviceEvent, 'valueService': mockvalueService, 'retRes':mockEvent});
+      });
+    });
 
     beforeEach(function(){
       queryDeferred.resolve(mockEvent);
@@ -224,6 +226,12 @@ describe('getEvents', function () {
 
     it('should get response Event', function(){
       expect(scope.serviceResponse).toEqual(mockEvent);
+    });
+
+    it('should return a response Event', function(){
+      var retVal=controller;
+      console.log('retVal: ' + retVal);
+      expect(retVal).toBeDefined();
     });
   });
 });
