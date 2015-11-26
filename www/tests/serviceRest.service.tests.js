@@ -2,14 +2,18 @@
 describe('serviceRest', function(){
 
   console.log('serviceRest factory test');
-
+  // test service using keyValue= Event as an example
   var rootScope;
-  var eventList;
+  var getList;
+  var deleteList;
+  var postList;
   var valueService;
-  var mockserviceRest;
+  var mockserviceRestGet;
   var scope;
   var serviceRest;
   var queryDeferred;
+  var deleteDeferred;
+  var postDeferred;
   var q;
   var resource;
   var mockParam={
@@ -17,7 +21,6 @@ describe('serviceRest', function(){
     'basicAuthHeader':'myHeader',
     'keyValue':'event'
   };
-  var queryDeferred;
   var mockEvent=[{
                  "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
                  "eventId": "Test00",
@@ -202,10 +205,17 @@ describe('serviceRest', function(){
     });
 
     mockserviceRest = {
-      query: function(){
-        console.log('mockserviceRest called');
+      GET: function(){
         queryDeferred = q.defer();
           return {$promise: queryDeferred.promise};
+      },
+      DELETE: function(){
+        deleteDeferred = q.defer();
+          return {$promise: deleteDeferred.promise};
+      },
+      POST: function(){
+        postDeferred = q.defer();
+          return {$promise: postDeferred.promise};
       }
     };
 
@@ -213,44 +223,52 @@ describe('serviceRest', function(){
       $provide.value('serviceRest', mockserviceRest);
     });
 
-    spyOn(mockserviceRest, 'query').and.callThrough();
+    spyOn(mockserviceRest, 'GET').and.callThrough();
+    spyOn(mockserviceRest, 'DELETE').and.callThrough();
+    spyOn(mockserviceRest, 'POST').and.callThrough();
 
-    inject(function($rootScope, $q, $resource, _serviceRest_, _valueService_) {
+
+    inject(function(_$rootScope_, $q, $resource, _serviceRest_, _valueService_) {
       valueService=_valueService_;
       serviceRest=_serviceRest_;
       resource=$resource;
-      rootScope=$rootScope;
+      //rootScope=$rootScope;
+      $rootScope=_$rootScope_;
       q=$q;
-      scope=rootScope.$new();
+      //scope=rootScope.$new();
+
     });
+
   });
 
   beforeEach(function(){
-    eventList=serviceRest.query();
-    console.log('serviceRest.query(): ' + eventList);
+    //instantiates the function
+
+    getList=serviceRest.GET();
+    deleteList=serviceRest.DELETE();
+    postList=serviceRest.POST();
 
     queryDeferred.resolve(mockEvent);
-    scope.$apply();
+    deleteDeferred.resolve();
+    postDeferred.resolve();
+    $rootScope.$apply();
 
   });
 
 
-  it('should call query', function() {
-
-    expect(mockserviceRest.query).toHaveBeenCalled();
+  it('should call GET', function() {
+    expect(mockserviceRest.GET).toHaveBeenCalled();
   });
 
-  it('should get response', function(){
-    expect(scope.serviceResponse).toEqual(mockEvent);
-    // problem here is that the expection 'eventList' is a promise and compared
-    // to mockEvent, an array
-
+  it('should call DELETE', function() {
+    expect(mockserviceRest.DELETE).toHaveBeenCalled();
   });
 
-  it('should return a response', function() {
-
-
+  it('should call DELETE', function() {
+    expect(mockserviceRest.DELETE).toHaveBeenCalled();
   });
+
+
 
 
 

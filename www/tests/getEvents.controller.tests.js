@@ -3,11 +3,12 @@ describe('getEvents', function () {
 
   console.log('getEvents controller test');
 
-  var serviceEvent;
+  var serviceRest;
+  var valueService;
   var scope;
   var rootScope;
   var q;
-  var mockserviceEvent;
+  var mockserviceRest;
   var mockvalueService=[];
   var queryDeferred;
   var controller;
@@ -191,8 +192,14 @@ describe('getEvents', function () {
 
     beforeEach(function(){
 
-      mockserviceEvent = {
-        query: function(){
+      mockvalueService={
+        'vtxAddress':'myAddress',
+        'basicAuthHeader':'myHeader',
+        'keyValue':'event'
+      };
+
+      mockserviceRest = {
+        GET: function(){
           queryDeferred = q.defer();
           return {$promise: queryDeferred.promise};
         }
@@ -200,18 +207,22 @@ describe('getEvents', function () {
 
 
       module(function($provide){
-        $provide.value('serviceEvent', mockserviceEvent);
+        $provide.value('serviceRest', mockserviceRest);
       });
 
+      module(function($provide){
+        $provide.value('valueService',mockvalueService);
+      });
 
-      spyOn(mockserviceEvent, 'query').and.callThrough();
+      spyOn(mockserviceRest, 'GET').and.callThrough();
 
-      inject(function($controller, $rootScope, $q, _serviceEvent_){
-        serviceEvent= _serviceEvent_;
+      inject(function($controller, $rootScope, $q, _serviceRest_, _valueService_){
+        serviceRest= _serviceRest_;
+        valueService=_valueService_;
         q=$q;
         rootScope=$rootScope;
         scope=rootScope.$new();
-        controller=$controller('getEvents', {'$scope': scope, 'serviceEvent': mockserviceEvent, 'valueService': mockvalueService, 'retRes':mockEvent});
+        controller=$controller('getEvents', {'$scope': scope, 'serviceRest': mockserviceRest, 'valueService': mockvalueService, 'retRes':mockEvent});
       });
     });
 
@@ -221,7 +232,7 @@ describe('getEvents', function () {
     });
 
     it('should query', function(){
-      expect(mockserviceEvent.query).toHaveBeenCalled();
+      expect(mockserviceRest.GET).toHaveBeenCalled();
     });
 
     it('should get response Event', function(){
@@ -232,6 +243,10 @@ describe('getEvents', function () {
       var retVal=controller;
       console.log('retVal: ' + retVal);
       expect(retVal).toBeDefined();
+    });
+
+    it('should set keyValue to event', function(){
+      expect(valueService.keyValue).toBe('event');
     });
   });
 });
