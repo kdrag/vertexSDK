@@ -134,6 +134,23 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
+    .state('app.loggedIn.2', {
+      url: '/2',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/eventsList.html',
+          controller: 'getEvents'
+        }
+      }
+    })
+
+
+
     .state('app.loggedIn.single', {
       url: '/{id:[3-7]{0,1}}',
       cache: 'false',
@@ -149,20 +166,6 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
-    .state('app.loggedIn.2', {
-      url: '/2',
-      cache: 'false',
-      data:{
-        requiredLogin: true
-      }
-      ,
-      views:{
-        'loggedIn-placeholder':{
-          templateUrl: 'templates/eventsList.html',
-          controller: 'getEvents'
-        }
-      }
-    })
 
 
     .state('app.loggedIn.8', {
@@ -199,6 +202,7 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
         requiredLogin: true
       }
     })
+
 
     // home menu selection is excluded from regular expression, and deferred to $urlRouteProvider.
 

@@ -7,8 +7,6 @@ describe('serviceRest', function(){
   var getList;
   var deleteList;
   var postList;
-  var valueService;
-  var mockserviceRestGet;
   var scope;
   var serviceRest;
   var queryDeferred;
@@ -16,11 +14,11 @@ describe('serviceRest', function(){
   var postDeferred;
   var q;
   var resource;
-  var mockParam={
-    'vtxAddress':'myAddress',
-    'basicAuthHeader':'myHeader',
-    'keyValue':'event'
-  };
+  var address;
+  var header;
+  var key;
+  var mockValues;
+  var mockresource;
   var mockEvent=[{
                  "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
                  "eventId": "Test00",
@@ -200,8 +198,33 @@ describe('serviceRest', function(){
 
   beforeEach(function(){
 
-    module(function($provide) {
-      $provide.value('valueService', mockParam);
+    mockValues={
+      'address':'myAddress',
+      'header':'myHeader',
+      'key':'myKey'
+    };
+
+    module(function($provide){
+      $provide.value('address', mockValues.address);
+    });
+
+    module(function($provide){
+      $provide.value('header', mockValues.header);
+    });
+
+    module(function($provide){
+      $provide.value('key', mockValues.key);
+    });
+
+    mockresource = {
+      query: function(){
+        queryDeferred = q.defer();
+        return {$promise: queryDeferred.promise};
+      }
+    };
+
+    module(function($provide){
+      $provide.value('resource', mockresource);
     });
 
     mockserviceRest = {
@@ -226,16 +249,17 @@ describe('serviceRest', function(){
     spyOn(mockserviceRest, 'GET').and.callThrough();
     spyOn(mockserviceRest, 'DELETE').and.callThrough();
     spyOn(mockserviceRest, 'POST').and.callThrough();
+    spyOn(mockresource, 'query').and.callThrough();
 
-
-    inject(function(_$rootScope_, $q, $resource, _serviceRest_, _valueService_) {
-      valueService=_valueService_;
+    inject(function(_$rootScope_, $q, _$resource_, _serviceRest_, _address_,_header_,_key_) {
       serviceRest=_serviceRest_;
-      resource=$resource;
-      //rootScope=$rootScope;
-      $rootScope=_$rootScope_;
+      resource=_$resource_;
+      address=_address_;
+      header=_header_;
+      key=_key_;
+      rootScope=_$rootScope_;
       q=$q;
-      //scope=rootScope.$new();
+      scope=rootScope.$new();
 
     });
 
@@ -251,10 +275,21 @@ describe('serviceRest', function(){
     queryDeferred.resolve(mockEvent);
     deleteDeferred.resolve();
     postDeferred.resolve();
-    $rootScope.$apply();
+    rootScope.$apply();
 
   });
 
+  it('vtxAddress', function() {
+    expect(address).toBe('myAddress');
+  });
+
+  it('header', function() {
+    expect(header).toBe('myHeader');
+  });
+
+  it('keyValue', function() {
+    expect(key).toBe('myKey');
+  });
 
   it('should call GET', function() {
     expect(mockserviceRest.GET).toHaveBeenCalled();
@@ -267,9 +302,5 @@ describe('serviceRest', function(){
   it('should call DELETE', function() {
     expect(mockserviceRest.DELETE).toHaveBeenCalled();
   });
-
-
-
-
 
 });

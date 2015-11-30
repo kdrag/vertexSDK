@@ -4,15 +4,17 @@ describe('getEvents', function () {
   console.log('getEvents controller test');
 
   var serviceRest;
-  var valueService;
   var scope;
   var rootScope;
   var q;
   var mockserviceRest;
-  var mockvalueService=[];
   var queryDeferred;
   var controller;
+  var value;
   var retVal;
+  var address;
+  var header;
+  var key;
   var mockEvent=[{
                  "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
                  "eventId": "Test00",
@@ -188,17 +190,17 @@ describe('getEvents', function () {
     $urlRouterProvider.deferIntercept();
   }));
 
-  describe('getEvent serviceEvent.query', function(){
+  describe('getEvent serviceEvent', function(){
 
     beforeEach(function(){
 
-      mockvalueService={
-        'vtxAddress':'myAddress',
-        'basicAuthHeader':'myHeader',
-        'keyValue':'event'
-      };
-
       mockserviceRest = {
+        valueAddress: function(value){
+        },
+        valueHeader: function(value){
+        },
+        valueKey: function(value){
+        },
         GET: function(){
           queryDeferred = q.defer();
           return {$promise: queryDeferred.promise};
@@ -206,23 +208,24 @@ describe('getEvents', function () {
       };
 
 
+
       module(function($provide){
         $provide.value('serviceRest', mockserviceRest);
       });
 
-      module(function($provide){
-        $provide.value('valueService',mockvalueService);
-      });
 
       spyOn(mockserviceRest, 'GET').and.callThrough();
+      spyOn(mockserviceRest, 'valueAddress').and.returnValue('myAddress');
+      spyOn(mockserviceRest, 'valueHeader').and.returnValue('myHeader');
+      spyOn(mockserviceRest, 'valueKey').and.returnValue('myKey');
 
-      inject(function($controller, $rootScope, $q, _serviceRest_, _valueService_){
+
+      inject(function($controller, $rootScope, $q, _serviceRest_){
         serviceRest= _serviceRest_;
-        valueService=_valueService_;
         q=$q;
         rootScope=$rootScope;
         scope=rootScope.$new();
-        controller=$controller('getEvents', {'$scope': scope, 'serviceRest': mockserviceRest, 'valueService': mockvalueService, 'retRes':mockEvent});
+        controller=$controller('getEvents', {'$scope': scope, 'serviceRest':mockserviceRest});
       });
     });
 
@@ -231,22 +234,13 @@ describe('getEvents', function () {
       scope.$apply();
     });
 
+
     it('should query', function(){
-      expect(mockserviceRest.GET).toHaveBeenCalled();
+      expect(serviceRest.GET).toHaveBeenCalled();
     });
 
     it('should get response Event', function(){
       expect(scope.serviceResponse).toEqual(mockEvent);
-    });
-
-    it('should return a response Event', function(){
-      var retVal=controller;
-      console.log('retVal: ' + retVal);
-      expect(retVal).toBeDefined();
-    });
-
-    it('should set keyValue to event', function(){
-      expect(valueService.keyValue).toBe('event');
     });
   });
 });

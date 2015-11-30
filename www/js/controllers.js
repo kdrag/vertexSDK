@@ -85,6 +85,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
+
+
 .controller('functionSys8Controller',function ($scope, $state, $location, $ionicViewService, $ionicHistory){
 
 
@@ -114,10 +116,15 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   $scope.value=page;
   //valuelist[index].title specifies the Function selected by the User
   document.getElementById('textInsert').innerHTML = 'Function is ' + valuelist[index].title;
-  if (valuelist[index].title=='Home'){
+  if (valuelist[index].title=='Events'){
 
-    $state.go('app.loggedOut.home')
+    $state.go('app.loggedIn.2')
   }
+
+//  if (valuelist[index].title=='Home'){
+
+//    $state.go('app.loggedOut.home')
+//  }
 })
 
 .controller('functionControllerTertiary', function($state, $scope, $ionicHistory, $location, $ionicViewService){
@@ -177,7 +184,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
   $scope.settingValues=[];
   $scope.settingValues={
-    'vtxAddress' : 'null',
+    'vtxAddress' : 'localhost:8100',
     'programName' : 'null',
     'generic2' : 'null'
   };
@@ -192,7 +199,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 }])
 
-.controller("signInController",['$rootScope', '$scope', '$http', '$state', '$localstorage', '$ionicHistory', 'valueService', function($rootScope, $scope, $http, $state, $localstorage, $ionicHistory, valueService) {
+.controller("signInController",['$scope', '$http', '$state', '$localstorage', '$ionicHistory', 'valueService', function( $scope, $http, $state, $localstorage, $ionicHistory, valueService) {
 
  // https://scotch.io/license
  // From https://scotch.io/quick-tips/how-to-encode-and-decode-strings-with-base64-in-javascript
@@ -231,9 +238,10 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       //alert($localstorage.get('basic_auth_header'));
       $localstorage.set('loggedInState', true);
       $scope.data.stateValue=$localstorage.get('loggedInState');
+      valueService.updatebasicAuthHeader('Basic '+ header64);
+      //alert('base64: '+ valueService.basicAuthHeader);
     }
 
-    valueService.updatebasicAuthHeader('Basic '+ header64);
 };
 
 }])
@@ -246,24 +254,19 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 })
 
-.controller('userInfoController', function ($scope, Event, $ionicLoading){
+.controller('userInfoController', function ($scope, Event, $ionicLoading, valueService){
 
-    var unix_timestamp = 1318305600000;
+    valueService.updatekeyValue('event');
+    var address = Event.valueAddress(valueService.vtxAddress);
+    var header =Event.valueHeader(valueService.basicAuthHeader);
+    var key = Event.valueKey(valueService.keyValue);
 
-    var date = new Date(unix_timestamp*1000);
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-    // will display time in 21:00:00 format
-    var formattedTime = hours + ':' + minutes + ':' + seconds;
 
-    alert('date; time: ' + date +  ';' + formattedTime);
 
-    $ionicLoading.show({
-      template: 'Loading...'
+    var returnedVal=Event.retVal();
+    $scope.event = returnedVal.get().$promise.then(function(response){
+      $scope.serviceResponse = response;
     });
-    $scope.event = Event.get();
-    $ionicLoading.hide()
 
 })
 
@@ -275,12 +278,18 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
 
 .controller('getEvents',function ($scope, serviceRest, valueService){
 
-  var retRes;
+  //var retRes;
       //1- get basicAuthHeader, the header from valueService
       //2- get vtxAddress, the Vertex host address from valueService
       //3- get resource handle from serviceEvent
-  valueService.keyValue = 'event';
-  return retRes= serviceRest.GET()
+
+  valueService.updatekeyValue = ('event');
+  serviceRest.valueAddress(valueService.vtxAddress);
+  serviceRest.valueHeader(valueService.basicAuthHeader);
+  serviceRest.valueKey(valueService.keyValue);
+
+//  $scope.eventLists= mockEvent;
+  return $scope.eventLists= serviceRest.GET()
       .$promise
       .then(function(response){
         $scope.serviceResponse = response;
