@@ -9,59 +9,44 @@
   <ion-view title="Event Info" align="center">
     <ion-content padding="true">
 
-      <!--div class="list card">
-        <div class="item" align="left">
-          id: {{event.id}}<br></br>
-          eventId: {{event.eventId}}<br></br>
-          dtStart: {{event.dtStart}}<br></br>
-          marketContext: {{event.marketContext}}<br></br>
-          duration: {{event.duration}}<br></br>
+      <div class="list card">
+        <div class="item" align="left" ng-model='serviceResponse'>
+          id: {{serviceResponse.id}}<br></br>
+          eventId: {{serviceResponse.eventId}}<br></br>
+          dtStart: {{serviceResponse.dtStart}}<br></br>
+          marketContext: {{serviceResponse.marketContext}}<br></br>
+          duration: {{serviceResponse.duration}}<br></br>
           signals: [ <br></br>
-          <blockquote>type: {{event.signals[0].type}}<br></br>
+          <blockquote>type: {{serviceResponse.signals[0].type}}<br></br>
                       interval: [  <br></br>
-                      <blockquote>duration: {{event.signals[0].intervals[0].duration}}<br></br>
-                                  value: {{event.signals[0].intervals[0].value}}<br></br>
+                      <blockquote>duration: {{serviceResponse.signals[0].intervals[0].duration}}<br></br>
+                                  value: {{serviceResponse.signals[0].intervals[0].value}}<br></br>
                       ]</blockquote><br></br>
-                      id: {{event.signals[0].id}}<br></br>
-                      name: {{event.signals[0].name}}<br></br>
-                      curValue: {{event.signals[0].curValue}}<br></br>
+                      id: {{serviceResponse.signals[0].id}}<br></br>
+                      name: {{serviceResponse.signals[0].name}}<br></br>
+                      curValue: {{serviceResponse.signals[0].curValue}}<br></br>
           </blockquote><br></br>
           ]<br></br>
-          cancelled: {{event.cancelled}}<br></br>
-          testEvent: {{event.testEvent}}<br></br>
-          responseRequired: {{event.responseRequired}}<br></br>
+          cancelled: {{serviceResponse.cancelled}}<br></br>
+          testEvent: {{serviceResponse.testEvent}}<br></br>
+          responseRequired: {{serviceResponse.responseRequired}}<br></br>
           target: [<br></br>
-          <blockquote>resourceIDs: {{event.target[0].resourceIDs}}<br></br>
-                      venIDs: {{event.target[0].eventIDs}}<br></br>
+          <blockquote>resourceIDs: {{serviceResponse.target[0].resourceIDs}}<br></br>
+                      venIDs: {{serviceResponse.target[0].eventIDs}}<br></br>
           </blockquote><br></br>
           ]<br></br>
-          participationStatusTs: {{event.participationStatusTs}}<br></br>
-          modNumber: {{event.modNumber}}<br></br>
-          vertex ID: {{event.vertex}}<br></br>
-          endTs: {{event.endTs}}<br></br>
-          startTs: {{event.startTs}}<br></br>
-          drProgram: {{event.drProgram}}<br></br>
-          rampUpStartTs: {{event.rampUpStartTs}}<br></br>
-          recoveryEndTs: {{event.recoveryEndTs}}<br></br>
-          accountParticipationKw: {{event.accountParticipationKw}}<br></br>
-          participationStatus: {{event.participationStatus}}<br></br>
-          createdTs: {{event.createdTs}}
+          participationStatusTs: {{serviceResponse.participationStatusTs}}<br></br>
+          modNumber: {{serviceResponse.modNumber}}<br></br>
+          vertex ID: {{serviceResponse.vertex}}<br></br>
+          endTs: {{serviceResponse.endTs}}<br></br>
+          startTs: {{serviceResponse.startTs}}<br></br>
+          drProgram: {{serviceResponse.drProgram}}<br></br>
+          rampUpStartTs: {{serviceResponse.rampUpStartTs}}<br></br>
+          recoveryEndTs: {{serviceResponse.recoveryEndTs}}<br></br>
+          accountParticipationKw: {{serviceResponse.accountParticipationKw}}<br></br>
+          participationStatus: {{serviceResponse.participationStatus}}<br></br>
+          createdTs: {{serviceResponse.createdTs}}
         </div>
-      </div -->
-        <ion-list ng-controller="userInfoController" ng-model='event'>
-          <ion-item align="left">
-              id: {{event.id}}
-          </ion-item>
-          <ion-item align="left">
-              eventId: {{event.eventId}}
-          </ion-item>
-          <ion-item align="left">
-            dtStart: {{event.dtStart}}
-          </ion-item>
-          <ion-item align="center">
-            marketContext: {{event.marketContext}}
-          </ion-item>
-        </ion-list>
-
+      </div>
 </ion-content>
 </ion-view>
