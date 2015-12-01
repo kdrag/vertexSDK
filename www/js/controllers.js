@@ -266,8 +266,8 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     var returnedVal=Event.retVal();
     $scope.event = returnedVal.get().$promise.then(function(response){
       $scope.serviceResponse = response;
+      return response;
     });
-
 })
 
 /******************************************/

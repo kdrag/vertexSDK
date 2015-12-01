@@ -347,7 +347,8 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 
   retVal: this.retVal=function(){
     $http.defaults.headers.common.Authorization = this.header;
-    return $resource('http://'+this.address+'/'+this.key+'/Test00');
+    var end = '/Test00';
+    return $resource('http://'+this.address+'/'+this.key+end);
   };
 
 //  retVal: this.retVal=function(){

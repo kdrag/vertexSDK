@@ -9,7 +9,7 @@
   <ion-view title="Event Info" align="center">
     <ion-content padding="true">
 
-      <div class="list card">
+      <!--div class="list card">
         <div class="item" align="left">
           id: {{event.id}}<br></br>
           eventId: {{event.eventId}}<br></br>
@@ -47,7 +47,21 @@
           participationStatus: {{event.participationStatus}}<br></br>
           createdTs: {{event.createdTs}}
         </div>
-      </div>
+      </div -->
+        <ion-list ng-controller="userInfoController" ng-model='event'>
+          <ion-item align="left">
+              id: {{event.id}}
+          </ion-item>
+          <ion-item align="left">
+              eventId: {{event.eventId}}
+          </ion-item>
+          <ion-item align="left">
+            dtStart: {{event.dtStart}}
+          </ion-item>
+          <ion-item align="center">
+            marketContext: {{event.marketContext}}
+          </ion-item>
+        </ion-list>
 
 </ion-content>
 </ion-view>
