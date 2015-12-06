@@ -11,8 +11,13 @@
     <ion-content padding="true">
 
       <ion-list>
-        <ion-item align="left"  ng-repeat="eventList in eventLists">
-              {{eventList}}
+        <ion-item align="left" ng-repeat="serviceResponse in serviceResponses" ng-model='serviceResponse'>
+          id: {{serviceResponse.id}}<br></br>
+          eventId: {{serviceResponse.eventId}}<br></br>
+          dtStart: {{serviceResponse.dtStart}}<br></br>
+          marketContext: {{serviceResponse.marketContext}}<br></br>
+          duration: {{serviceResponse.duration}}<br></br>
+          participationStatus: {{serviceResponse.participationStatus}}<br></br>
         </ion-item>
       </ion-list>
 

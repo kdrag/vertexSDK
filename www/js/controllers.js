@@ -446,16 +446,16 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       //2- get vtxAddress, the Vertex host address from valueService
       //3- get resource handle from serviceEvent
 
-  valueService.updatekeyValue = ('event');
-  serviceRest.valueAddress(valueService.vtxAddress);
-  serviceRest.valueHeader(valueService.basicAuthHeader);
-  serviceRest.valueKey(valueService.keyValue);
+  valueService.updatekeyValue('event');
+  var address = serviceRest.valueAddress(valueService.vtxAddress);
+  var header = serviceRest.valueHeader(valueService.basicAuthHeader);
+  var key = serviceRest.valueKey(valueService.keyValue);
 
 //  $scope.eventLists= mockEvent;
-  return $scope.eventLists= serviceRest.GET()
-      .$promise
-      .then(function(response){
-        $scope.serviceResponse = response;
+  var returnedVal=serviceRest.GET();
+  $scope.eventLists= returnedVal.query().$promise.then(function(response){
+        $scope.serviceResponses = response;
+        return response;
       });
 })
 

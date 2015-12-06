@@ -19,10 +19,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
 //usage:DELETE $scope.eventlist=serviceEvent.delete
 
 .service('serviceRest', function($resource,$http){
-  var authheader = null;
-  var vtxAddress = null;
-  var res = null;
-  var keyValue = null;
+
   var mockEvent=[{
                  "id": "5038a84d-7bcb-4ad3-ab1f-f90fc3701585",
                  "eventId": "Test00",
@@ -183,7 +180,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
                  "createdTs": 1419007554041,
                  "_cas": 7
         }];
-
+  var GET={};
   var valueAddress={};
   var valueHeader={};
   var valueKey = {};
@@ -204,32 +201,48 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
     return this.key;
   };
 
-  $http.defaults.headers.common.Authorization = this.header;
-  vtxAddress=this.address;
-  keyValue = this.key;
-  authheader = this.header;
-  res = 'http://'+ vtxAddress+'/'+key;
-  console.log('@serviceEvent-' + vtxAddress, authheader, keyValue, res);
 
-  GET: return
-  //        mockEvent;
-      $resource(res).query()
-      .$promise
-      .then(function(response){
-        $scope.serviceResponse = response;
-  });
+  GET:   this.GET=function(){
+    $http.defaults.headers.common.Authorization = this.header;
+    return $resource('http://'+this.address+'/'+this.key);
+  //    .query()
+  //    .$promise
+  //    .then(function(response){
+  //      $scope.serviceResponse = response;
+  //});
+  };
+/*
+  DELETE: this.DELETE=function(){
+    $http.defaults.headers.common.Authorization = this.header;
+    vtxAddress=this.address;
+    keyValue = this.key;
+    authheader = this.header;
+    res = 'http://'+ vtxAddress+'/'+keyValue;
+    console.log('@serviceEvent-' + vtxAddress, authheader, keyValue, res);
 
-  DELETE: return $resource(res).remove()
-      .$promise
-      .then(function(response){
-        $scope.serviceResponse = response;
-  });
+    return $resource(res);
+  //    .remove()
+  //    .$promise
+  //    .then(function(response){
+  //      $scope.serviceResponse = response;
+  //});
+  };
 
-  POST: return $resource(res).save()
-      .$promise
-      .then(function(response){
-        $scope.serviceResponse = response;
-  });
+  POST: this.POST=function(){
+    $http.defaults.headers.common.Authorization = this.header;
+    vtxAddress=this.address;
+    keyValue = this.key;
+    authheader = this.header;
+    res = 'http://'+ vtxAddress+'/'+keyValue;
+    console.log('@serviceEvent-' + vtxAddress, authheader, keyValue, res);
+
+    return $resource(res);
+      //.save()
+      //.$promise
+      //.then(function(response){
+      //  $scope.serviceResponse = response;
+  //});
+*/
 })
 
 .factory('serviceEvent',function(valueService){
@@ -261,7 +274,7 @@ angular.module('vertexSDK.services',['angular-storage', 'ngResource'])
   return $resource(ENDPOINT_URI+'authentication');
 })
 
-.factory('valueService', function($rootScope){
+.service('valueService', function($rootScope){
     var service = {};
     service.vtxAddress = null;
     service.programName = null;
