@@ -85,6 +85,20 @@ Line Instruction: CLI) **IONIC SERVE**を活用することで、簡易的に�
 ウェブリソースへの接続を可能にするアクセスルートを確立します。vertexSDKコード内ではlocalhost:8100
 を外部ウェブリソースとして指定することで、プロキシ・サーバーを利用します。
 
+Ionic　サーバー　プロキシー機能バグとNode JS Local-Web-Server代行利用について
+--------------------------------------
+**>IONIC SERVE**のプロキシーURLは**ionic.project**ファイル内に定義ができます。利用時には、現在プロキシーにバグがあり、不要な'/'がHTTPリクエストに添付されます。その結果、リモートのAPIサーバーは404エラー（見つかりません）を発生させる可能性があり、開発の妨げになります。一つの解決方法として、全く別のプロキシーサーバーを設置することができます。
+
+Node JSのパッケージ、「Local-Web-Server」を利用すれば、IONIC SERVEのプロキシーサーバーバグを回避できます。このパッケージをインスタールするには下記の手順を使います。
+
+>sudo npm install -g Local-Web-Server
+
+インスタール後、プロジシーを行うURLをしていします。
+
+ws --rewrite '/event -> http://vtx00.wgn.jp/event'
+
+上記の例はSPAをローカルブラウザーで起動した際、リモートAPIの/eventを取得する際利用します。これはVertex2.3.x機能メニュー、「Events」で使われます。
+
 基本特徴：　プロジェクト構造
 -----------------------
 プロジェクトは、AngularJSのディレクトリー構造とIonic Frameworkを利用します。
@@ -168,6 +182,22 @@ Developing an hybrid HTML5 application requires care to handle the Cross Origin 
 The development environment of HTML5 hybrid applications more often than not enlist a browser (such as **Firefox Firebug**) to prototype and render the code.  If that code is acting as a single page application (**SPA**), and independently accesses a web-based API, the CORS policy of the browser environment will kick-in, and prevent a typical HTTP method to function and retrieve data.  In actuality, an independently packaged SPA will not encounter such a problem, because it will operate outside of a browser environment.  However in the development phase, it is often efficient and useful for the developer to use browsers.
 
 To circumvent this problem, makers of the Ionic Framework provides a quick and easy proxy server, the invoked by the command line instruction (CLI) **>IONIC SERVE** in the root directory of the ionic project.  To utilize proxy server, the _ionic.project_ file.  A proxy server URL is defined with the file; once the CLI is issued, the proxy server will examine the contents of the _ionic.project_ file and run a server to serve as the front to the external web resource.  Within the code itself, the URL used shall be the localhost:8100, the location of the proxy server.
+
+Ionic Server Proxy Bug and on the use of Node JS Local-Web-Server
+---------------------------------------------
+The **>IONIC SERVE** proxy URL can be defined within the **ionic.project** file.  However, in actual use, a bug causes the proxy server to append the proxied URL with a "/".  This often causes the external API server to reject any request with an unknown URL (404).  Such a bug greatly affects productivity to develop a SPA.  Therefore a solution is to run a completely separate proxy server.
+
+To this end, Node JS package "Local-Web-Server" serves the purpose.  Install the package such as below in the global installation case:
+
+>sudo npm install -g Local-Web-Server
+
+This the, after installation will enable specifying and running of a proxy server.
+For example,
+
+>ws --rewrite '/event -> http://vtx00.wgn.jp/event'
+
+will direct the SPA local instance to access the /event API, the function available under the Vertex2.3.x Functions menu, under "Events".
+
 
 Basic Feature:  Project structure
 --------------------------------------
