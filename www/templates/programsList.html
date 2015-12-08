@@ -1,0 +1,25 @@
+<ion-nav-bar class="bar-assertive">
+
+  <ion-nav-back-button class="button-icon ion-chevron-left" ng-click="appGoBack()"></ion-nav-back-button>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+  <ion-view title="Programs List" align="center">
+
+    <ion-content padding="true">
+
+      <ion-list>
+        <ion-item align="left" ng-repeat="serviceResponse in serviceResponses.drPrograms">
+              Market Context: {{serviceResponse.marketContext}}<br></br>
+              Policy: {{serviceResponse.policy}}<br></br>
+              Program Name: {{serviceResponse.programName}}<br></br>
+              Opt In: {{serviceResponse.autoOptIn}}<br></br>
+              Propagation Type: {{serviceResponse.eventPropagationType}}<br></br>
+
+        </ion-item>
+      </ion-list>
+
+    </ion-content>
+  </ion-view>

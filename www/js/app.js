@@ -149,10 +149,53 @@ angular.module('vertexSDK', ['ionic','vertexSDK.controllers', 'vertexSDK.service
       }
     })
 
+    .state('app.loggedIn.3', {
+      url: '/3',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/usersList.html',
+          controller: 'getUsers'
+        }
+      }
+    })
 
+    .state('app.loggedIn.4', {
+      url: '/4',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/accountsList.html',
+          controller: 'getAccounts'
+        }
+      }
+    })
+
+    .state('app.loggedIn.5', {
+      url: '/5',
+      cache: 'false',
+      data:{
+        requiredLogin: true
+      }
+      ,
+      views:{
+        'loggedIn-placeholder':{
+          templateUrl: 'templates/programsList.html',
+          controller: 'getPrograms'
+        }
+      }
+    })
 
     .state('app.loggedIn.single', {
-      url: '/{id:[3-7]{0,1}}',
+      url: '/{id:[6-7]{0,1}}',
       cache: 'false',
       data:{
         requiredLogin: true

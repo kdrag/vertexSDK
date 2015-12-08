@@ -45,11 +45,11 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   $scope.functionlists = [
     { title: 'Home', id: 1 },
     { title: 'Events', id: 2 },
-    { title: 'Users', id: 3 },
+    //{ title: 'Users', id: 3 },
     { title: 'Accounts', id: 4 },
     { title: 'Programs', id: 5 },
-    { title: 'Data Sets', id: 6 },
-    { title: 'Gateway Status', id: 7 },
+    //{ title: 'Data Sets', id: 6 },
+    //{ title: 'Gateway Status', id: 7 },
     { title: 'System Configuration', id: 8 }
   ]
 
@@ -77,7 +77,10 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   $scope.selectConfigItem=function(function_sysconfiglist){
     //alert(function_sysconfiglist.title + " " + function_sysconfiglist.id);
     var state='app.loggedIn.function.'+function_sysconfiglist.id
-    $state.go(state);
+    if(function_sysconfiglist.id==1){
+    }else{
+      $state.go(state);
+    }
     //alert('state='+state);
     //alert('path='+'#/app/loggedIn/function/'+function_sysconfiglist.id);
   }
@@ -102,11 +105,11 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
   var valuelist = [
     { title: 'Home', id: 1 },
     { title: 'Events', id: 2 },
-    { title: 'Users', id: 3 },
+    //{ title: 'Users', id: 3 },
     { title: 'Accounts', id: 4 },
     { title: 'Programs', id: 5 },
-    { title: 'Data Sets', id: 6 },
-    { title: 'Gateway Status', id: 7 },
+    //{ title: 'Data Sets', id: 6 },
+    //{ title: 'Gateway Status', id: 7 },
     { title: 'System Configuration', id: 8 }
   ];
 
@@ -459,8 +462,50 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
       });
 })
 
+.controller('getUsers',function ($scope, serviceRest, valueService){
 
+  valueService.updatekeyValue('user');
+  var address = serviceRest.valueAddress(valueService.vtxAddress);
+  var header = serviceRest.valueHeader(valueService.basicAuthHeader);
+  var key = serviceRest.valueKey(valueService.keyValue);
 
+//  $scope.eventLists= mockEvent;
+  var returnedVal=serviceRest.GET();
+  $scope.eventLists= returnedVal.query().$promise.then(function(response){
+        $scope.serviceResponses = response;
+        return response;
+      });
+})
+
+.controller('getAccounts',function ($scope, serviceRest, valueService){
+
+  valueService.updatekeyValue('customer');
+  var address = serviceRest.valueAddress(valueService.vtxAddress);
+  var header = serviceRest.valueHeader(valueService.basicAuthHeader);
+  var key = serviceRest.valueKey(valueService.keyValue);
+
+//  $scope.eventLists= mockEvent;
+  var returnedVal=serviceRest.GET();
+  $scope.eventLists= returnedVal.get().$promise.then(function(response){
+        $scope.serviceResponses = response;
+        return response;
+      });
+})
+
+.controller('getPrograms',function ($scope, serviceRest, valueService){
+
+  valueService.updatekeyValue('program');
+  var address = serviceRest.valueAddress(valueService.vtxAddress);
+  var header = serviceRest.valueHeader(valueService.basicAuthHeader);
+  var key = serviceRest.valueKey(valueService.keyValue);
+
+//  $scope.eventLists= mockEvent;
+  var returnedVal=serviceRest.GET();
+  $scope.eventLists= returnedVal.get().$promise.then(function(response){
+        $scope.serviceResponses = response;
+        return response;
+      });
+})
 /******************************************/
 /*  level 2 functionality menu controllers
 /*

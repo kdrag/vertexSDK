@@ -1,0 +1,24 @@
+<ion-nav-bar class="bar-assertive">
+
+  <ion-nav-back-button class="button-icon ion-chevron-left" ng-click="appGoBack()"></ion-nav-back-button>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+  <ion-view title="Users List" align="center">
+
+    <ion-content padding="true">
+
+      <ion-list>
+        <ion-item align="left" ng-repeat="serviceResponse in serviceResponses" ng-model='serviceResponse'>
+          E mail: {{serviceResponse.email}}<br></br>
+          user Name: {{serviceResponse.userName}}<br></br>
+          role: {{serviceResponse.role}}<br></br>
+          First Name: {{serviceResponse.givenName}}<br></br>
+          Last Name: {{serviceResponse.surname}}<br></br>
+          Send Email?: {{serviceResponse.sendEmail}}<br></br>
+      </ion-list>
+
+    </ion-content>
+  </ion-view>
