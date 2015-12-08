@@ -50,7 +50,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Programs', id: 5 },
     //{ title: 'Data Sets', id: 6 },
     //{ title: 'Gateway Status', id: 7 },
-    { title: 'System Configuration', id: 8 }
+    //{ title: 'System Configuration', id: 8 }
   ]
 
   $scope.selectItem=function(functionlist){
@@ -110,7 +110,7 @@ angular.module('vertexSDK.controllers', ['vertexSDK.services'])
     { title: 'Programs', id: 5 },
     //{ title: 'Data Sets', id: 6 },
     //{ title: 'Gateway Status', id: 7 },
-    { title: 'System Configuration', id: 8 }
+    //{ title: 'System Configuration', id: 8 }
   ];
 
 
