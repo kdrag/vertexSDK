@@ -160,32 +160,53 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 Vertex Client Application
 ====================
 
-Vertex Client Application
-====================
-
 Introduction
 --------------
-This is a simple reference application to demonstrate some of the features of Vertex, the OpenADR 2.0b client virtual end node software.  This application is a client connecting to Vertex and not to be confused with the client virtual end node for OpenADR2.0b.
+This is a simple reference application to demonstrate some of the key features of Vertex, the OpenADR 2.0b client virtual end node software.  This application is a client connecting to Vertex and not to be confused with the client virtual end node for OpenADR2.0b.  The purpose of this application is educational:  it serves to instruct a software developer and product manager to imagine new ways to use electrical demand response information within the mobile device and home gateway settings.
 
 ![HomeScreen](https://lh3.googleusercontent.com/-4oAHXsa_4R0/VmeGxZs5_mI/AAAAAAAAI8k/ttSdT5kbl08/s0/HomeScreen.png "HomeScreen.png")
 
+The Home Screen is the landing page of the application.  It enables sign-in of users wishing to access information on Vertex but in an easy-to-use, mobile platform.  It is assumed that a user has already been created on the Vertex application by an Operator or Administrator.
+
 ![SideMenu](https://lh3.googleusercontent.com/-iI8b36UvJyI/VmeIbZkLq6I/AAAAAAAAI9Y/ZE4Qh3AIC9k/s0/SIdeMenuScreen.png "SIdeMenuScreen.png")
+
+The application implements a left side menu system; the menu items give access to various functions that ultimately enable access to Vertex information.  There are tentatively 7 menu items; the last is just a informational status item; the first "Home" enables return to the landing page.
+
+This application maintains its own user log-on state; this state information is used to interact with Vertex as a registered user, and provides user name and password information to each API request onto Vertex.  "Sign In" menu item guides the user to the user name / password entry page; Sign off clears that information.
+
+"Settings" navigates the user to the input for Vertex domain name entry.  "Functions" menu item leads the user to another menu level; this level provides for the requests to access Vertex data.
+
+Lastly, "Sample Event" shows an example DR event data, according to OpenADR2.0b schema.
 
 ![SignInScreen](https://lh3.googleusercontent.com/-Bf767Pt3byA/VmeIA2ldTWI/AAAAAAAAI80/4aka4myGmb0/s0/SignInScreen.png "SignInScreen.png")
 
+This page has four entry fields:  Email, User Name, Password, and Password confirmation.  The entry into this field is used to access the Vertex API; that API is only accessible to registered users; each request call to Vertex requires user name and password as part of the Basic Authentication process for HTTP requests.  The entry is not checked immediately against the registered user on Vertex side; only password entry is checked for erroneous entries against the confirmation field.
+
 ![Settings](https://lh3.googleusercontent.com/-VGv27i9YlQU/VmeIK-CKCZI/AAAAAAAAI9A/Ks4flO2PveI/s0/SettingsScreen.png "SettingsScreen.png")
+
+The settings page has three fields related to Vertex.  The first is the "Vertex Address".  Default is set to the local server and port number, if available.  Evaluation servers are available on vtx__.wgn.jp and access is granted through a out-of-band registration process.
+
+The second field is the Program Name; this is the contract to which the presumed user has contracted with the Demand Response signal provider.  The third field, Generic2 is used for miscellaneous information.  
 
 ![SampleEventSettings](https://lh3.googleusercontent.com/-Hxxli6K4v8o/VmeISaqQLXI/AAAAAAAAI9M/fEC8jLa9wug/s0/SampleEventScreen.png "SampleEventScreen.png")
 
+A sample OpenADR2.0b event is prepared, to show an example data of a DR signal.  This particular signal schema is according to the SIMPLE LEVEL type of signal.
+
 ![SecondaryMenu](https://lh3.googleusercontent.com/-SrC2uqCA420/VmeIhsNbfbI/AAAAAAAAI9k/8QldEYU3oSE/s0/SecondaryMenuScreen.png "SecondaryMenuScreen.png")
+
+When the user selects the "Functions" menu item, it guides him/her to the next level of menu items.  Here again the first item is Home, and will take the user back to the landing page.  The other three items retrieves specific data from Vertex.
 
 ![EventList](https://lh3.googleusercontent.com/-Cd_L1Wg5hxY/VmeIpHKjLlI/AAAAAAAAI9w/ivl7apO4eR0/s0/EventListScreen.png "EventListScreen.png")
 
+When the user selects "Events" from the second level of menus, the application makes a call to Vertex using the user name and password.  If an event exists, the data is retrieved.  In the above example, three events are retrieved and listed.   Only some of the schema field items are shown.
+
 ![AccountList](https://lh3.googleusercontent.com/-bZf4l33gJKU/VmeIvqcjNxI/AAAAAAAAI98/LAelApmG3tE/s0/AccountListScreen.png "AccountListScreen.png")
+
+Vertex recognizes that users can belong to customer groups, namely "Accounts".  Therefore, when a user selects the "Accounts" menu item, the application goes and retrieves existing customer accounts info.  Within Vertex, Accounts are associated to DR programs.
 
 ![ProgramList](https://lh3.googleusercontent.com/-muWoiXvMsq0/VmeI8MWil_I/AAAAAAAAI-U/Tdg2y765D44/s0/ProgramListScreen.png "ProgramListScreen.png")
 
-
+The last piece of data retrieval in this reference sample application is "Programs".  When the user selects the "Programs" menu item, the application proceeds to retrieve available DR program information on Vertex.
 
 Vertex Software Development Kit for Client Single Page Applications
 =========================================
