@@ -1,3 +1,27 @@
+Vertex クライアントアプリ
+====================
+
+紹介
+--------------
+このアプリケーションは、OpenADR2.0b バーチャルエンドノード（VEN）であるソフト「Vertex」の一部機能を紹介するもので、Vertexのクライアントアプリです。このアプリ自身は OpenADR 2.0b VENではありません。予めご了承願います。
+
+![HomeScreen](https://lh3.googleusercontent.com/-4oAHXsa_4R0/VmeGxZs5_mI/AAAAAAAAI8k/ttSdT5kbl08/s0/HomeScreen.png "HomeScreen.png")
+
+![SideMenu](https://lh3.googleusercontent.com/-iI8b36UvJyI/VmeIbZkLq6I/AAAAAAAAI9Y/ZE4Qh3AIC9k/s0/SIdeMenuScreen.png "SIdeMenuScreen.png")
+
+![SignInScreen](https://lh3.googleusercontent.com/-Bf767Pt3byA/VmeIA2ldTWI/AAAAAAAAI80/4aka4myGmb0/s0/SignInScreen.png "SignInScreen.png")
+
+![Settings](https://lh3.googleusercontent.com/-VGv27i9YlQU/VmeIK-CKCZI/AAAAAAAAI9A/Ks4flO2PveI/s0/SettingsScreen.png "SettingsScreen.png")
+
+![SampleEventSettings](https://lh3.googleusercontent.com/-Hxxli6K4v8o/VmeISaqQLXI/AAAAAAAAI9M/fEC8jLa9wug/s0/SampleEventScreen.png "SampleEventScreen.png")
+
+![SecondaryMenu](https://lh3.googleusercontent.com/-SrC2uqCA420/VmeIhsNbfbI/AAAAAAAAI9k/8QldEYU3oSE/s0/SecondaryMenuScreen.png "SecondaryMenuScreen.png")
+
+![EventList](https://lh3.googleusercontent.com/-Cd_L1Wg5hxY/VmeIpHKjLlI/AAAAAAAAI9w/ivl7apO4eR0/s0/EventListScreen.png "EventListScreen.png")
+
+![AccountList](https://lh3.googleusercontent.com/-bZf4l33gJKU/VmeIvqcjNxI/AAAAAAAAI98/LAelApmG3tE/s0/AccountListScreen.png "AccountListScreen.png")
+
+![ProgramList](https://lh3.googleusercontent.com/-muWoiXvMsq0/VmeI8MWil_I/AAAAAAAAI-U/Tdg2y765D44/s0/ProgramListScreen.png "ProgramListScreen.png")
 
 Vertex クライアントソフトウェア開発キット(SDK)
 =========================================
@@ -136,11 +160,31 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 Vertex Client Application
 ====================
 
+Vertex Client Application
+====================
+
 Introduction
 --------------
 This is a simple reference application to demonstrate some of the features of Vertex, the OpenADR 2.0b client virtual end node software.  This application is a client connecting to Vertex and not to be confused with the client virtual end node for OpenADR2.0b.
 
 ![HomeScreen](https://lh3.googleusercontent.com/-4oAHXsa_4R0/VmeGxZs5_mI/AAAAAAAAI8k/ttSdT5kbl08/s0/HomeScreen.png "HomeScreen.png")
+
+![SideMenu](https://lh3.googleusercontent.com/-iI8b36UvJyI/VmeIbZkLq6I/AAAAAAAAI9Y/ZE4Qh3AIC9k/s0/SIdeMenuScreen.png "SIdeMenuScreen.png")
+
+![SignInScreen](https://lh3.googleusercontent.com/-Bf767Pt3byA/VmeIA2ldTWI/AAAAAAAAI80/4aka4myGmb0/s0/SignInScreen.png "SignInScreen.png")
+
+![Settings](https://lh3.googleusercontent.com/-VGv27i9YlQU/VmeIK-CKCZI/AAAAAAAAI9A/Ks4flO2PveI/s0/SettingsScreen.png "SettingsScreen.png")
+
+![SampleEventSettings](https://lh3.googleusercontent.com/-Hxxli6K4v8o/VmeISaqQLXI/AAAAAAAAI9M/fEC8jLa9wug/s0/SampleEventScreen.png "SampleEventScreen.png")
+
+![SecondaryMenu](https://lh3.googleusercontent.com/-SrC2uqCA420/VmeIhsNbfbI/AAAAAAAAI9k/8QldEYU3oSE/s0/SecondaryMenuScreen.png "SecondaryMenuScreen.png")
+
+![EventList](https://lh3.googleusercontent.com/-Cd_L1Wg5hxY/VmeIpHKjLlI/AAAAAAAAI9w/ivl7apO4eR0/s0/EventListScreen.png "EventListScreen.png")
+
+![AccountList](https://lh3.googleusercontent.com/-bZf4l33gJKU/VmeIvqcjNxI/AAAAAAAAI98/LAelApmG3tE/s0/AccountListScreen.png "AccountListScreen.png")
+
+![ProgramList](https://lh3.googleusercontent.com/-muWoiXvMsq0/VmeI8MWil_I/AAAAAAAAI-U/Tdg2y765D44/s0/ProgramListScreen.png "ProgramListScreen.png")
+
 
 
 Vertex Software Development Kit for Client Single Page Applications
