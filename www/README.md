@@ -133,6 +133,14 @@ vertexSDKクライアントアプリケーションは下記の基本操作を�
 /img　の画像はここからです：  http://www.freeimages.com/
 
 
+Vertex Client Application
+====================
+
+Introduction
+--------------
+This is a simple reference application to demonstrate some of the features of Vertex, the OpenADR 2.0b client virtual end node software.  This application is a client connecting to Vertex and not to be confused with the client virtual end node for OpenADR2.0b.
+
+![HomeScreen](https://lh3.googleusercontent.com/-4oAHXsa_4R0/VmeGxZs5_mI/AAAAAAAAI8k/ttSdT5kbl08/s0/HomeScreen.png "HomeScreen.png")
 
 
 Vertex Software Development Kit for Client Single Page Applications
