@@ -7,21 +7,49 @@ Vertex クライアントアプリ
 
 ![HomeScreen](https://lh3.googleusercontent.com/-4oAHXsa_4R0/VmeGxZs5_mI/AAAAAAAAI8k/ttSdT5kbl08/s0/HomeScreen.png "HomeScreen.png")
 
+ホームスクリーンがアプリの紹介画面です。ユーザーがサインインすることでVertexの情報をモバイル端末から取得できます。この場合、既にVertex内のユーザーがオペレーター又はアドミニストレータが登録を完了している必要があります。
+
 ![SideMenu](https://lh3.googleusercontent.com/-iI8b36UvJyI/VmeIbZkLq6I/AAAAAAAAI9Y/ZE4Qh3AIC9k/s0/SIdeMenuScreen.png "SIdeMenuScreen.png")
+
+アプリは左スライダーメニューを用意しています。メニューは様々な機能を提供し、Vertexの情報を取得することができます。七つのメニュー項目を用意しております。最後の項目はログイン状態を示します。最初の項目はホームスクリーンに戻ります。
+
+このアプリはユーザーログイン状態を管理します。ログイン状態に有る場合のみVertexへの情報を取得できます。これは、その都度Vertexへ問い合わせする場合、ユーザー名及びパスワードがAPIで利用されるからです。「Sign In」メニューからユーザー名・パスワード記入ページへ誘導します。「Sign Off」はその情報を削除します。
+
+「Settings」項目にはVertexが起動するドメイン名を記入します。「Functions」項目は下位メニューへ続き、Vertexデーター取得の具体的項目を選択できるメニューへ誘導します。
+
+「Sample Event」はOpenADR2.0bイベントの参考スキーマに沿ったデータを取得します。
 
 ![SignInScreen](https://lh3.googleusercontent.com/-Bf767Pt3byA/VmeIA2ldTWI/AAAAAAAAI80/4aka4myGmb0/s0/SignInScreen.png "SignInScreen.png")
 
+このページには４項目がありますい：Eメール、ユーザー名、パスワード、パスワード確認。　これらの項目を記入することで、Vertex API経由でデータ取得ができます。APIアクセスは登録ユーザーのみに可能です。各VertexへのリクエストはHTTP基本認証を通じて各問い合わせにユーザー名及びパスワードが使われます。このページに記入することで直ちにVertexへ問い合わせされるのではないですが、パスワードとパスワード確認項目は比較されます。
+
+
 ![Settings](https://lh3.googleusercontent.com/-VGv27i9YlQU/VmeIK-CKCZI/AAAAAAAAI9A/Ks4flO2PveI/s0/SettingsScreen.png "SettingsScreen.png")
+
+「Setting」ページには３項目を記入する箇所があります。最初はVertexのアドレスです。ディフォルト値はローカルサーバーとポート８１００です。評価サーバーはvtx__.wgn.jpにあり、別途登録が必要です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+
+次の項目はプログラム名であり、これはDR信号の契約体型に依存します。三番目の項目は任意情報になります。
 
 ![SampleEventSettings](https://lh3.googleusercontent.com/-Hxxli6K4v8o/VmeISaqQLXI/AAAAAAAAI9M/fEC8jLa9wug/s0/SampleEventScreen.png "SampleEventScreen.png")
 
+参考用OpenADR2.0b　DRイベント信号の取得ができます。この信号はシンプルレベル型の信号スキーマに準拠しています。
+
 ![SecondaryMenu](https://lh3.googleusercontent.com/-SrC2uqCA420/VmeIhsNbfbI/AAAAAAAAI9k/8QldEYU3oSE/s0/SecondaryMenuScreen.png "SecondaryMenuScreen.png")
+
+When the user selects the "Functions" menu item, it guides him/her to the next level of menu items.  Here again the first item is Home, and will take the user back to the landing page.  The other three items retrieves specific data from Vertex.
+
 
 ![EventList](https://lh3.googleusercontent.com/-Cd_L1Wg5hxY/VmeIpHKjLlI/AAAAAAAAI9w/ivl7apO4eR0/s0/EventListScreen.png "EventListScreen.png")
 
+When the user selects "Events" from the second level of menus, the application makes a call to Vertex using the user name and password.  If an event exists, the data is retrieved.  In the above example, three events are retrieved and listed.   Only some of the schema field items are shown.
+
 ![AccountList](https://lh3.googleusercontent.com/-bZf4l33gJKU/VmeIvqcjNxI/AAAAAAAAI98/LAelApmG3tE/s0/AccountListScreen.png "AccountListScreen.png")
 
+Vertex recognizes that users can belong to customer groups, namely "Accounts".  Therefore, when a user selects the "Accounts" menu item, the application goes and retrieves existing customer accounts info.  Within Vertex, Accounts are associated to DR programs.
+
 ![ProgramList](https://lh3.googleusercontent.com/-muWoiXvMsq0/VmeI8MWil_I/AAAAAAAAI-U/Tdg2y765D44/s0/ProgramListScreen.png "ProgramListScreen.png")
+
+The last piece of data retrieval in this reference sample application is "Programs".  When the user selects the "Programs" menu item, the application proceeds to retrieve available DR program information on Vertex.
 
 Vertex クライアントソフトウェア開発キット(SDK)
 =========================================
