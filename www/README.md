@@ -36,20 +36,20 @@ Vertex クライアントアプリ
 
 ![SecondaryMenu](https://lh3.googleusercontent.com/-SrC2uqCA420/VmeIhsNbfbI/AAAAAAAAI9k/8QldEYU3oSE/s0/SecondaryMenuScreen.png "SecondaryMenuScreen.png")
 
-When the user selects the "Functions" menu item, it guides him/her to the next level of menu items.  Here again the first item is Home, and will take the user back to the landing page.  The other three items retrieves specific data from Vertex.
-
+「Functions」を選択した場合、ユーザーは次のメニュー階層へ誘導されます。最初の項目はホームスクリーンに戻します。他三項目はVertexの特定データを取得するのに使います。
 
 ![EventList](https://lh3.googleusercontent.com/-Cd_L1Wg5hxY/VmeIpHKjLlI/AAAAAAAAI9w/ivl7apO4eR0/s0/EventListScreen.png "EventListScreen.png")
 
-When the user selects "Events" from the second level of menus, the application makes a call to Vertex using the user name and password.  If an event exists, the data is retrieved.  In the above example, three events are retrieved and listed.   Only some of the schema field items are shown.
+「Events」は２番目のメニュー項目であり、アプリはVertexへユーザー名・パスワードを利用してデーターを取得します。ユーザーが存在する場合、イベントが取得されます。ここではイベントスキーマの一部のみ表示されます。
 
 ![AccountList](https://lh3.googleusercontent.com/-bZf4l33gJKU/VmeIvqcjNxI/AAAAAAAAI98/LAelApmG3tE/s0/AccountListScreen.png "AccountListScreen.png")
 
-Vertex recognizes that users can belong to customer groups, namely "Accounts".  Therefore, when a user selects the "Accounts" menu item, the application goes and retrieves existing customer accounts info.  Within Vertex, Accounts are associated to DR programs.
+Vertexの顧客は「Accounts」に属します。ユーザーが「Accounts」を選択した場合、アプリは顧客アカウント情報を取得します。Vertex内では、アカウントとDRプログラムが紐づけられています。
 
 ![ProgramList](https://lh3.googleusercontent.com/-muWoiXvMsq0/VmeI8MWil_I/AAAAAAAAI-U/Tdg2y765D44/s0/ProgramListScreen.png "ProgramListScreen.png")
 
-The last piece of data retrieval in this reference sample application is "Programs".  When the user selects the "Programs" menu item, the application proceeds to retrieve available DR program information on Vertex.
+最後の項目は「Programs」です。「Programs」を選択した場合、アプリはVertexに登録済みのDRプログラム情報が取得されます。
+
 
 Vertex クライアントソフトウェア開発キット(SDK)
 =========================================
