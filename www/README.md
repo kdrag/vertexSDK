@@ -1,3 +1,5 @@
+For English, see second half of Readme
+
 Vertex クライアントアプリ
 ====================
 
